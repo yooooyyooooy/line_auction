@@ -1,5 +1,6 @@
 import React from "react";
-import Navbar from "./Navbar"
+import Navbar from "./Navbar";
+import FavoritesCard from "./FavoritesCard";
 import {
   BrowserRouter as Router,
   Switch,
@@ -11,7 +12,7 @@ export default function App() {
   return (
     <Router>
       <div>
-        <Navbar></Navbar>
+        <Navbar/>
         <nav>
           <ul>
             <li>
@@ -46,7 +47,7 @@ export default function App() {
 }
 
 function Home() {
-  return <div><navbar/></div>
+  return <div><FavoritesCard/></div>
 }
 
 function About() {
