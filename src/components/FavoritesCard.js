@@ -3,6 +3,7 @@ import React from "react"
 //Components
 import {Box, List,Typography} from "@material-ui/core" 
 import RoundPaper from "./RoundPaper"
+import GreenButton from "./GreenButton"
 
 function FavoritesCard(){
   return (
@@ -14,6 +15,7 @@ function FavoritesCard(){
         <List>
            
         </List> 
+        <GreenButton text="SHOW ALL FAVOURITES"/>
       </RoundPaper>
     </Box>
   ) 
