@@ -1,4 +1,5 @@
 import React from "react";
+import Navbar from "./Navbar"
 import {
   BrowserRouter as Router,
   Switch,
@@ -10,6 +11,7 @@ export default function App() {
   return (
     <Router>
       <div>
+        <Navbar></Navbar>
         <nav>
           <ul>
             <li>
@@ -38,16 +40,22 @@ export default function App() {
           </Route>
         </Switch>
       </div>
+      <navbar/>
     </Router>
   );
 }
 
 function Home() {
-  return <h2>Home</h2>;
+  return <div><navbar/></div>
 }
 
 function About() {
-  return <h2>About</h2>;
+  return (
+    <div>
+      <h2>About Me</h2>
+      <h3>About You</h3>
+    </div>
+  );
 }
 
 function Users() {
