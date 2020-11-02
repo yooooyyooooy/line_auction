@@ -7,8 +7,8 @@ import GreenButton from "./GreenButton"
 
 function FavoritesCard(){
   return (
-    <Box>
-      <RoundPaper>
+    <div style={{marginLeft:"auto"}}>
+      <RoundPaper style={{width:"80%",marginTop:"5%"}}>
         <Typography>
           FAVOURITES
         </Typography>
@@ -17,7 +17,7 @@ function FavoritesCard(){
         </List> 
         <GreenButton text="SHOW ALL FAVOURITES"/>
       </RoundPaper>
-    </Box>
+    </div>
   ) 
 }
 
