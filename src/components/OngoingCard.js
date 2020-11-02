@@ -1,7 +1,7 @@
 import React from "react"
 
 //Components
-import {Box, Card , List,Typography} from "@material-ui/core" 
+import {Box, List,Typography} from "@material-ui/core" 
 import RoundPaper from "./RoundPaper"
 
 function OngoingCard(){
