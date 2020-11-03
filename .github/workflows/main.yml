@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 name: CI
 
 on:
@@ -22,3 +23,29 @@ jobs:
         args: deploy --only hosting
       env:
         FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+||||||| cac4212
+=======
+name: deploy_to_firebase_hosting
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  deploy_to_firebase_hosting:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+
+      - name: Checkout the repository
+        uses: actions/checkout@master
+      - run : yarn && yarn build      
+      - name: Deploy to Firebase
+        uses: w9jds/firebase-action@master
+        with:
+          args: deploy --only hosting
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+>>>>>>> 996eac5853cd32655c992925f321bf06216a9116
