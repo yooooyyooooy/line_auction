@@ -12,7 +12,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@dev
-    - uses: actions/setup-node@dev
+    - uses: actions/setup-node@master
       with:
         node-version: '10.x'
     - run: yarn
