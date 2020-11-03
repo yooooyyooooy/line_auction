@@ -11,10 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - run : yarn build
+
       - name: Checkout the repository
         uses: actions/checkout@master
-      
+      - run : yarn build      
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@master
         with:
