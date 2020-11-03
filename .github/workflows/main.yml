@@ -1,3 +1,30 @@
+<<<<<<< HEAD
+name: CI
+
+on:
+  push:
+    branches:
+    - dev
+
+jobs:
+  firebase-deploy:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@dev
+    - uses: actions/setup-node@dev
+      with:
+        node-version: '10.x'
+    - run: yarn
+    - run: yarn build
+    - uses: w9jds/firebase-action@master
+      with:
+        args: deploy --only hosting
+      env:
+        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+||||||| cac4212
+=======
 name: deploy_to_firebase_hosting
 
 on:
@@ -21,3 +48,4 @@ jobs:
           args: deploy --only hosting
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+>>>>>>> 996eac5853cd32655c992925f321bf06216a9116

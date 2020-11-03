@@ -9,6 +9,10 @@ import Navbar from "../components/Navbar";
 import { Box, Typography } from "@material-ui/core";
 import Intersect from "../image/Intersect.svg";
 
+//redux
+import { useSelector } from "react-redux";
+
+
 import { isMobile } from "react-device-detect";
 
 /* initialize fontSize for responsive mode */
@@ -19,9 +23,10 @@ const headerFontSize = {
 };
 
 export default function Home() {
+  const informationUserReducer = useSelector(({ informationReducer }) => informationReducer);
   if (isMobile) {
     return (
-      <> 
+      <>
         <Navbar />
         <div style={{ position: "relative", height: "100%" }}>
           <img
@@ -46,15 +51,17 @@ export default function Home() {
           <Typography
             style={{ fontSize: headerFontSize.md, color: colors.white }}
           >
-            Poon
+            {informationUserReducer.userName}
+            <br />
+            {informationUserReducer.userID}
+            <br />
+            {informationUserReducer.userEmail}
           </Typography>
         </Box>
-        <Box>
-          <OngoingCard />
-          <FavoritesCard />
-          <ShopsCard />
-          <HistoryCard />
-        </Box>
+        <OngoingCard />
+        <FavoritesCard />
+        <ShopsCard />
+        <HistoryCard />
       </>
     );
   }
