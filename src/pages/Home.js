@@ -21,7 +21,7 @@ const headerFontSize = {
 export default function Home() {
   if (isMobile) {
     return (
-      <>
+      <> 
         <Navbar />
         <div style={{ position: "relative", height: "100%" }}>
           <img
