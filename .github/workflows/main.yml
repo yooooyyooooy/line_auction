@@ -3,14 +3,11 @@ on:
   push:
     branches:
       - dev
-
 jobs:
   deploy_to_firebase_hosting:
-
     runs-on: ubuntu-latest
     
     steps:
-
       - name: Checkout the repository
         uses: actions/checkout@master
       - run : yarn && yarn build      
@@ -18,5 +15,4 @@ jobs:
         uses: w9jds/firebase-action@master
         with:
           args: deploy --only hosting
-        env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
