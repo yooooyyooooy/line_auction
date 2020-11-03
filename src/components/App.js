@@ -1,5 +1,6 @@
 import React from "react";
 import Home from "../pages/Home";
+import Ongoing from "../pages/Ongoing"
 import {
   BrowserRouter as Router,
   Switch,
@@ -31,8 +32,8 @@ export default function App() {
           <Route path="/about">
             <About />
           </Route>
-          <Route path="/users">
-            <Users />
+          <Route path="/ongoing">
+            <Ongoing/>
           </Route>
           <Route path="/">
             <Home />
