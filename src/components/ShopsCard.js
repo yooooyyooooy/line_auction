@@ -20,14 +20,14 @@ const useStyles = makeStyles((theme) => ({
 function ShopsCard() {
   const classes = useStyles();
   return (
-    <Box>
-      <RoundPaper style={{ width: "80%", marginTop: "5%", margin: "auto" }}>
+    <Box marginTop="5%">
+      <RoundPaper style={{ width: "80%", margin: "auto" }}>
         <Box className={classes.headers}>
           <ShopTwoIcon fontSize="small" />
           <Typography>SHOPS</Typography>
         </Box>
         <List></List>
-        <GreenButton text="SHOW ALL SHOPS" />
+        <GreenButton text="SHOW ALL SHOPS" dest="/shops"/>
       </RoundPaper>
     </Box>
   );

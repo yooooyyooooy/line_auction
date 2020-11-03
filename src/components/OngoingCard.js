@@ -20,14 +20,14 @@ const useStyles = makeStyles((theme) => ({
 function OngoingCard() {
   const classes = useStyles();
   return (
-    <Box>
-      <RoundPaper style={{ width: "80%", marginTop: "5%", margin: "auto" }}>
+    <Box marginTop="0%">
+      <RoundPaper style={{ width: "80%", margin: "auto" }}>
         <Box className={classes.headers}>
           <FiberManualRecordIcon fontSize="small" />
           <Typography>ON-GOING</Typography>
         </Box>
         <List></List>
-        <GreenButton text="SHOW ALL ON-GOING" />
+        <GreenButton text="SHOW ALL ON-GOING" dest="/ongoing"/>
       </RoundPaper>
     </Box>
   );

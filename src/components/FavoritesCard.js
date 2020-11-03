@@ -20,14 +20,14 @@ const useStyles = makeStyles((theme) => ({
 function FavoritesCard() {
   const classes = useStyles();
   return (
-    <Box>
-      <RoundPaper style={{ width: "80%", marginTop: "5%", margin: "auto" }}>
+    <Box marginTop="5%">
+      <RoundPaper style={{ width: "80%", margin: "auto" }}>
         <Box className={classes.headers}>
           <StarIcon fontSize="small" />
           <Typography>FAVORITES</Typography>
         </Box>
         <List></List>
-        <GreenButton text="SHOW ALL FAVOURITES" />
+        <GreenButton text="SHOW ALL FAVOURITES" dest="/favorites"/>
       </RoundPaper>
     </Box>
   );

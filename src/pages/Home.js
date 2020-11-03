@@ -51,7 +51,7 @@ export default function Home() {
           <Typography
             style={{ fontSize: headerFontSize.md, color: colors.white }}
           >
-            {informationUserReducer.userName}
+            {informationUserReducer.userName} Hello World
             <br />
             {informationUserReducer.userID}
             <br />

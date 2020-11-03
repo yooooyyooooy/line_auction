@@ -8,6 +8,7 @@ import BackButton from "../components/BackButton";
 
 import { makeStyles } from "@material-ui/core/styles";
 import colors from "../styles/colors";
+import {useHistory} from "react-router-dom"
 
 const useStyles = makeStyles((theme) => ({
   headers: {
@@ -28,11 +29,12 @@ const headerFontSize = {
 
 function HistoryPageCard() {
   const classes = useStyles();
+  const history = useHistory();
   return (
     <Box>
       <RoundPaper style={{ width: "80%", marginTop: "10%", margin: "auto" }}>
         <Box display = "flex">
-          <BackButton/>
+        <span onClick={e=>{history.push("/")}}><BackButton/></span>
           <Box className={classes.headers} marginLeft = "auto">
             <ReplayIcon fontSize="small" />
             <Typography>HISTORY</Typography>

@@ -35,17 +35,3 @@ export default function App() {
     </Router>
   );
 }
-
-
-function About() {
-  return (
-    <div>
-      <h2>About Me</h2>
-      <h3>About You</h3>
-    </div>
-  );
-}
-
-// function Users() {
-//   return <h2>Users</h2>;
-// }
