@@ -7,8 +7,8 @@ import GreenButton from "./GreenButton"
 
 function ShopsCard(){
   return (
-    <Box>
-      <RoundPaper style={{width:"80%",marginTop:"5%",margin:"auto"}}>
+    <Box marginTop="5%">
+      <RoundPaper style={{width:"80%",margin:"auto"}}>
         <Typography>
           SHOPS
         </Typography>

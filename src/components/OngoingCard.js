@@ -7,8 +7,8 @@ import GreenButton from "./GreenButton"
 
 function OngoingCard(){
   return (
-    <Box>
-      <RoundPaper style={{width:"80%",marginTop:"5%",margin:"auto"}}>
+    <Box marginTop="5%">
+      <RoundPaper style={{width:"80%",marginTop:"10%",margin:"auto"}}>
         <Typography>
           ON-GOING
         </Typography>

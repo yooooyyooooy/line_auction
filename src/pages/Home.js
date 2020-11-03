@@ -16,7 +16,8 @@ const headerFontSize = {
     xs: "1.3rem",
     sm: "1.5rem",
     md: "1.7rem"
-  }
+}
+
 
 export default function Home() {
     if (isMobile) {
