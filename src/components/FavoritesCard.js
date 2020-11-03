@@ -1,24 +1,36 @@
-import React from "react"
+import React from "react";
 
 //Components
-import { List,Typography} from "@material-ui/core" 
-import RoundPaper from "./RoundPaper"
-import GreenButton from "./GreenButton"
+import { Box, List, Typography } from "@material-ui/core";
+import RoundPaper from "./RoundPaper";
+import GreenButton from "./GreenButton";
+import StarIcon from "@material-ui/icons/Star";
 
-function FavoritesCard(){
+import { makeStyles } from "@material-ui/core/styles";
+import colors from "../styles/colors";
+
+const useStyles = makeStyles((theme) => ({
+  headers: {
+    color: colors.blue,
+    display: "flex",
+    justifyContent: "flex-end",
+  },
+}));
+
+function FavoritesCard() {
+  const classes = useStyles();
   return (
-    <div style={{marginLeft:"auto"}}>
-      <RoundPaper style={{width:"80%",marginTop:"5%",margin:"auto"}}>
-        <Typography>
-          FAVOURITES
-        </Typography>
-        <List>
-           
-        </List> 
-        <GreenButton text="SHOW ALL FAVOURITES"/>
+    <Box>
+      <RoundPaper style={{ width: "80%", marginTop: "5%", margin: "auto" }}>
+        <Box className={classes.headers}>
+          <StarIcon fontSize="small" />
+          <Typography>FAVOURITES</Typography>
+        </Box>
+        <List></List>
+        <GreenButton text="SHOW ALL FAVOURITES" />
       </RoundPaper>
-    </div>
-  ) 
+    </Box>
+  );
 }
 
-export default FavoritesCard
+export default FavoritesCard;
