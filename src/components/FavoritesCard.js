@@ -4,7 +4,7 @@ import React from "react"
 import { List,Typography} from "@material-ui/core" 
 import RoundPaper from "./RoundPaper"
 import GreenButton from "./GreenButton"
-
+ 
 function FavoritesCard(){
   return (
     <div style={{marginLeft:"auto"}}>
