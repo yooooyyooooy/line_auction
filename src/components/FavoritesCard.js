@@ -1,14 +1,14 @@
 import React from "react"
 
 //Components
-import {Box, List,Typography} from "@material-ui/core" 
+import { List,Typography} from "@material-ui/core" 
 import RoundPaper from "./RoundPaper"
 import GreenButton from "./GreenButton"
 
 function FavoritesCard(){
   return (
     <div style={{marginLeft:"auto"}}>
-      <RoundPaper style={{width:"80%",marginTop:"5%"}}>
+      <RoundPaper style={{width:"80%",marginTop:"5%",margin:"auto"}}>
         <Typography>
           FAVOURITES
         </Typography>

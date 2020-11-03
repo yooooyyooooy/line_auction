@@ -2,8 +2,10 @@ import React from "react"
 
 import colors from "../styles/colors"
 import FavoritesCard from "../components/FavoritesCard"
+import OngoingCard from "../components/OngoingCard"
+import ShopsCard from "../components/ShopsCard"
+import HistoryCard from "../components/HistoryCard"
 import Navbar from "../components/Navbar"
-import {makeStyles} from "@material-ui/core/styles"
 import {Box,Typography} from "@material-ui/core"
 import Intersect from "../image/Intersect.svg"
 
@@ -30,6 +32,10 @@ export default function Home() {
                 <Box style={{marginTop:"2%",marginLeft:"15%"}}>
                     <Typography style={{fontSize:headerFontSize.md,color : colors.white}}>Poon</Typography>
                 </Box>
+                <OngoingCard/>
+                <FavoritesCard/>
+                <ShopsCard/>
+                <HistoryCard/>
             </>
         )
     }
