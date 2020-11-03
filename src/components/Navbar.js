@@ -1,5 +1,5 @@
 import React from "react"
-import {AppBar,Toolbar,Avatar,Icon,Container} from "@material-ui/core"
+import {AppBar,Toolbar,Avatar} from "@material-ui/core"
 import colors from "../styles/colors.js"
 import GavelIcon from '@material-ui/icons/Gavel';
 
