@@ -8,6 +8,8 @@ import { isMobile } from "react-device-detect";
 
 import OngoingPageCard from "../components/OngoingPageCard"
 
+/* initialize fontSize for responsive mode */
+
 
 export default function Ongoing() {
   if (isMobile) {
