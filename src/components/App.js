@@ -35,8 +35,3 @@ export default function App() {
     </Router>
   );
 }
-
-
-// function Users() {
-//   return <h2>Users</h2>;
-// }
