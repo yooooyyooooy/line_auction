@@ -9,7 +9,7 @@ import { Provider } from "react-redux";
 import store from "./reduxStore"
 import fetchLiff from "./utils/setAuthorization"
 
-fetchLiff();
+// fetchLiff();
 
 
 ReactDOM.render(
