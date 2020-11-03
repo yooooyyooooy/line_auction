@@ -1,24 +1,22 @@
-name: auto deploy
+name: deploy_to_firebase_hosting
 
 on:
   push:
-    branches:
-    - dev
+    tags:
+      - release-production-*
 
 jobs:
-  firebase-deploy:
+  deploy_to_firebase_hosting:
 
     runs-on: ubuntu-latest
-
+    
     steps:
-    - uses: actions/checkout@dev
-    - uses: actions/setup-node@master
-      with:
-        node-version: '10.x'
-    - run: yarn
-    - run: yarn build
-    - uses: w9jds/firebase-action@master
-      with:
-        args: deploy --only hosting
-      env:
-        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+      - name: Checkout the repository
+        uses: actions/checkout@dev
+      
+      - name: Deploy to Firebase
+        uses: w9jds/firebase-action@master
+        with:
+          args: deploy --only hosting
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }
