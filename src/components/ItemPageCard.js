@@ -5,7 +5,7 @@ import { Box, IconButton, Typography, TextField } from "@material-ui/core";
 import RoundPaper from "./RoundPaper";
 import StarIcon from "@material-ui/icons/Star";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
-import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import BackButton from "../components/BackButton";
 import GreenButton from "../components/GreenButton";
 import Diamonds from "../image/diamonds.png";
@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
   },
   details: {
     color: colors.darkGrey,
-    fontSize: detailFontSize
+    fontSize: detailFontSize,
   },
 }));
 
@@ -47,6 +47,7 @@ const detailFontSize = {
 function ItemPageCard(props) {
   const classes = useStyles();
   const history = useHistory();
+  const [intime] = useState(false);
   const [clicks, setClick] = useState(false);
   const handleClick = (e) => {
     clicks ? setClick(false) : setClick(true);
@@ -95,22 +96,36 @@ function ItemPageCard(props) {
           </Box>
         </Box>
         <Box align="center" marginTop="10%">
-          <Typography variant="subtitle1">ราคาประมูลปัจจุบัน</Typography>
+          {intime ? (
+            <Typography variant="subtitle1">ราคาประมูลปัจจุบัน</Typography>
+          ) : (
+            <Typography variant="subtitle1">สิ้นสุดการประมูลที่</Typography>
+          )}
+
           <Typography variant="h3" style={{ fontWeight: "bold" }}>
-            100,000
+            100,000 บาท
           </Typography>
         </Box>
         <Box marginTop="10%">
-          <TextField
-            id="filled-required"
-            placeholder="เสนอราคาประมูล"
-            variant="outlined"
-            size="small"
-            fullWidth
-          />
+          {intime ? (
+            <TextField
+              id="filled-required"
+              placeholder="เสนอราคาประมูล"
+              variant="outlined"
+              size="small"
+              fullWidth
+            />
+          ) : null}
         </Box>
-        <Box marginTop = "4%">
-          <GreenButton text =  "เสนอราคา" icon = {<NavigateNextIcon/>}></GreenButton>
+        <Box marginTop="4%">
+          {intime ? (
+            <GreenButton text="เสนอราคา" icon={<NavigateNextIcon />} />
+          ) : (
+            <GreenButton
+              text="โอนเงินผ่าน LINE PAY"
+              icon={<NavigateNextIcon />}
+            />
+          )}
         </Box>
       </RoundPaper>
     </Box>
