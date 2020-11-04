@@ -23,11 +23,15 @@ function ShopsCard() {
     <Box marginTop="5%">
       <RoundPaper style={{ width: "80%", margin: "auto" }}>
         <Box className={classes.headers}>
-          <ShopTwoIcon fontSize="small" />
-          <Typography>SHOPS</Typography>
+          <Box marginRight="1rem">
+            <ShopTwoIcon fontSize="small" marginRight="2rem" />
+          </Box>
+          <Box>
+            <Typography>SHOPS</Typography>
+          </Box>
         </Box>
         <List></List>
-        <GreenButton text="SHOW ALL SHOPS" dest="/shops"/>
+        <GreenButton text="SHOW ALL SHOPS" dest="/shops" />
       </RoundPaper>
     </Box>
   );
