@@ -7,9 +7,7 @@ import AccessAlarmIcon from '@material-ui/icons/AccessAlarm';
 
 const imgStyle = {
     maxWidth:"100%",
-    display:"absolute",
-    top:"50%",
-    translateY:"-50%",
+    maxHeight:"100%",
     objectFit:"cover"
 }
 
@@ -27,7 +25,7 @@ export default function ItemCard(props) {
                 <Box width="30%" display="flex" justifyContent="center">
                     <img alt="1" src={Diamonds} style={imgStyle}/>
                 </Box>
-                <Box width="70%" display="flex" alignItems="center" justifyContent="center" >
+                <Box width="65%" display="flex" alignItems="center" justifyContent="center" >
                     <Box>
                         <Box style={{overflow:"hidden",whiteSpace:"nowrap",textOverflow:"ellipsis",width:"45vw",fontSize:headerFontSize.xs,color:'#2A282A'}}>
                             {props.title}
