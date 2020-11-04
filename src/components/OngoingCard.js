@@ -28,6 +28,7 @@ function OngoingCard() {
           <Typography>ON-GOING</Typography>
         </Box>
         <List>
+          <ItemCard title="เพชรวิบวับนำเข้าจากอังกฤษ" time="เหลือเวลาอีก 20 นาที"/>
           <ItemCard title="วิบวับวิบวับ" time="เหลือเวลาอีก 20 นาที"/>
         </List>
         <GreenButton text="SHOW ALL ON-GOING" dest="/ongoing"/>
