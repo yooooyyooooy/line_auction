@@ -12,7 +12,6 @@ import Intersect from "../image/Intersect.svg";
 //redux
 import { useSelector } from "react-redux";
 
-
 import { isMobile } from "react-device-detect";
 
 /* initialize fontSize for responsive mode */
@@ -22,8 +21,13 @@ const headerFontSize = {
   md: "1.7rem",
 };
 
+// will do "makeStyles"
+ 
+
 export default function Home() {
-  const informationUserReducer = useSelector(({ informationReducer }) => informationReducer);
+  const informationUserReducer = useSelector(
+    ({ informationReducer }) => informationReducer
+  );
   if (isMobile) {
     return (
       <>
@@ -58,10 +62,12 @@ export default function Home() {
             {informationUserReducer.userEmail}
           </Typography>
         </Box>
-        <OngoingCard />
-        <FavoritesCard />
-        <ShopsCard />
-        <HistoryCard />
+        <Box marginY = "2%" marginX = "auto" >
+          <OngoingCard />
+          <FavoritesCard />
+          <ShopsCard />
+          <HistoryCard />
+        </Box>
       </>
     );
   }

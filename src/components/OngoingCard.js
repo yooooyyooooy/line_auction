@@ -23,11 +23,15 @@ function OngoingCard() {
     <Box marginTop="0%">
       <RoundPaper style={{ width: "80%", margin: "auto" }}>
         <Box className={classes.headers}>
-          <FiberManualRecordIcon fontSize="small" />
-          <Typography>ON-GOING</Typography>
+          <Box marginRight="1rem">
+            <FiberManualRecordIcon fontSize="small" />
+          </Box>
+          <Box>
+            <Typography>ON-GOING</Typography>
+          </Box>
         </Box>
         <List></List>
-        <GreenButton text="SHOW ALL ON-GOING" dest="/ongoing"/>
+        <GreenButton text="SHOW ALL ON-GOING" dest="/ongoing" />
       </RoundPaper>
     </Box>
   );
