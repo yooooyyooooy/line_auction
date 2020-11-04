@@ -1,24 +1,23 @@
 import React from "react";
 
 //Components
-import { Box, List, ListItem,Typography } from "@material-ui/core";
+import { Box, List, ListItem, Typography } from "@material-ui/core";
 import RoundPaper from "./RoundPaper";
 import ShopTwoIcon from "@material-ui/icons/ShopTwo";
 import BackButton from "../components/BackButton";
 
 import { makeStyles } from "@material-ui/core/styles";
 import colors from "../styles/colors";
-import {useHistory} from "react-router-dom"
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   headers: {
     color: colors.blue,
     display: "flex",
     justifyContent: "right",
-    fontSize: headerFontSize
+    fontSize: headerFontSize,
   },
 }));
-
 
 /* initialize fontSize for responsive mode */
 const headerFontSize = {
@@ -27,17 +26,29 @@ const headerFontSize = {
   md: "1.7rem",
 };
 
+// will add "GreenButton" later
+
 function ShopsPageCard() {
   const classes = useStyles();
   const history = useHistory();
   return (
-    <Box>
+    <Box marginTop="5%">
       <RoundPaper style={{ width: "80%", marginTop: "10%", margin: "auto" }}>
-        <Box display = "flex">
-        <span onClick={e=>{history.push("/")}}><BackButton/></span>
-          <Box className={classes.headers} marginLeft = "auto">
-            <ShopTwoIcon fontSize="small" />
-            <Typography>SHOPS</Typography>
+        <Box display="flex">
+          <span
+            onClick={(e) => {
+              history.push("/");
+            }}
+          >
+            <BackButton />
+          </span>
+          <Box className={classes.headers} marginLeft="auto">
+            <Box marginRight="1rem">
+              <ShopTwoIcon fontSize="small" marginRight="2rem" />
+            </Box>
+            <Box>
+              <Typography>SHOPS</Typography>
+            </Box>
           </Box>
         </Box>
         <List>
@@ -46,7 +57,6 @@ function ShopsPageCard() {
           <ListItem>ayyyyy</ListItem>
           <ListItem>ayyyyy</ListItem>
         </List>
-
       </RoundPaper>
     </Box>
   );

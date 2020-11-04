@@ -8,10 +8,9 @@ import HistoryCard from "../components/HistoryCard";
 import Navbar from "../components/Navbar";
 import { Box, Typography } from "@material-ui/core";
 import Intersect from "../image/Intersect.svg";
-
+import LandingDesktop from "../components/LandingDesktop"
 //redux
 import { useSelector } from "react-redux";
-
 
 import { isMobile } from "react-device-detect";
 
@@ -22,8 +21,13 @@ const headerFontSize = {
   md: "1.7rem",
 };
 
+// will do "makeStyles"
+ 
+
 export default function Home() {
-  const informationUserReducer = useSelector(({ informationReducer }) => informationReducer);
+  const informationUserReducer = useSelector(
+    ({ informationReducer }) => informationReducer
+  );
   if (isMobile) {
     return (
       <>
@@ -58,17 +62,19 @@ export default function Home() {
             {informationUserReducer.userEmail}
           </Typography>
         </Box>
-        <OngoingCard />
-        <FavoritesCard />
-        <ShopsCard />
-        <HistoryCard />
+        <Box marginY = "2%" marginX = "auto" >
+          <OngoingCard />
+          <FavoritesCard />
+          <ShopsCard />
+          <HistoryCard />
+        </Box>
       </>
     );
   }
   return (
     <>
       <Navbar />
-      Hello World
+      <LandingDesktop />
     </>
   );
 }

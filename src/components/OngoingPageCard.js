@@ -1,23 +1,22 @@
 import React from "react";
 
 //Components
-import { Box, List, ListItem,Typography } from "@material-ui/core";
+import { Box, List, ListItem, Typography } from "@material-ui/core";
 import RoundPaper from "./RoundPaper";
 import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
 import BackButton from "../components/BackButton";
 
 import { makeStyles } from "@material-ui/core/styles";
 import colors from "../styles/colors";
-import {useHistory} from "react-router-dom"
+import { useHistory } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   headers: {
     color: colors.red,
     display: "flex",
     justifyContent: "right",
-    fontSize: headerFontSize
+    fontSize: headerFontSize,
   },
 }));
-
 
 /* initialize fontSize for responsive mode */
 const headerFontSize = {
@@ -30,13 +29,23 @@ function OngoingPageCard() {
   const classes = useStyles();
   const history = useHistory();
   return (
-    <Box>
+    <Box marginTop="5%">
       <RoundPaper style={{ width: "80%", marginTop: "10%", margin: "auto" }}>
-        <Box display = "flex">
-          <span onClick={e=>{history.push("/")}}><BackButton/></span>
-          <Box className={classes.headers} marginLeft = "auto">
-            <FiberManualRecordIcon fontSize="small" />
-            <Typography>ON-GOING</Typography>
+        <Box display="flex">
+          <span
+            onClick={(e) => {
+              history.push("/");
+            }}
+          >
+            <BackButton />
+          </span>
+          <Box className={classes.headers} marginLeft="auto">
+            <Box marginRight="1rem">
+              <FiberManualRecordIcon fontSize="small" />
+            </Box>
+            <Box>
+              <Typography>ON-GOING</Typography>
+            </Box>
           </Box>
         </Box>
         <List>
@@ -45,7 +54,6 @@ function OngoingPageCard() {
           <ListItem>ayyyyy</ListItem>
           <ListItem>ayyyyy</ListItem>
         </List>
-
       </RoundPaper>
     </Box>
   );

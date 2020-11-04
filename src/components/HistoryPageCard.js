@@ -1,24 +1,23 @@
 import React from "react";
 
 //Components
-import { Box, List, ListItem,Typography } from "@material-ui/core";
+import { Box, List, ListItem, Typography } from "@material-ui/core";
 import RoundPaper from "./RoundPaper";
 import ReplayIcon from "@material-ui/icons/Replay";
 import BackButton from "../components/BackButton";
 
 import { makeStyles } from "@material-ui/core/styles";
 import colors from "../styles/colors";
-import {useHistory} from "react-router-dom"
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   headers: {
     color: colors.blue,
     display: "flex",
     justifyContent: "right",
-    fontSize: headerFontSize
+    fontSize: headerFontSize,
   },
 }));
-
 
 /* initialize fontSize for responsive mode */
 const headerFontSize = {
@@ -31,13 +30,23 @@ function HistoryPageCard() {
   const classes = useStyles();
   const history = useHistory();
   return (
-    <Box>
+    <Box marginTop="5%">
       <RoundPaper style={{ width: "80%", marginTop: "10%", margin: "auto" }}>
-        <Box display = "flex">
-        <span onClick={e=>{history.push("/")}}><BackButton/></span>
-          <Box className={classes.headers} marginLeft = "auto">
-            <ReplayIcon fontSize="small" />
-            <Typography>HISTORY</Typography>
+        <Box display="flex">
+          <span
+            onClick={(e) => {
+              history.push("/");
+            }}
+          >
+            <BackButton />
+          </span>
+          <Box className={classes.headers} marginLeft="auto">
+            <Box marginRight="1rem">
+              <ReplayIcon fontSize="small" />
+            </Box>
+            <Box>
+              <Typography>HISTORY</Typography>
+            </Box>
           </Box>
         </Box>
         <List>
@@ -46,7 +55,6 @@ function HistoryPageCard() {
           <ListItem>ayyyyy</ListItem>
           <ListItem>ayyyyy</ListItem>
         </List>
-
       </RoundPaper>
     </Box>
   );
