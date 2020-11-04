@@ -3,7 +3,6 @@ import React from "react"
 import colors from "../styles/colors"
 import {Box,Button} from "@material-ui/core"
 import Diamonds from "../image/diamonds.png";
-import AccessAlarmIcon from '@material-ui/icons/AccessAlarm';
 import {useHistory} from "react-router-dom"
 
 const imgStyle = {
