@@ -31,7 +31,7 @@ function HistoryPageCard() {
   const history = useHistory();
   return (
     <Box marginTop="5%">
-      <RoundPaper style={{ width: "80%", marginTop: "10%", margin: "auto" }}>
+      <RoundPaper style={{ width: "80%",margin: "auto" }}>
         <Box display="flex">
           <span
             onClick={(e) => {

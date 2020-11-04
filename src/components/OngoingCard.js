@@ -5,10 +5,11 @@ import { Box, List, Typography } from "@material-ui/core";
 import RoundPaper from "./RoundPaper";
 import GreenButton from "./GreenButton";
 import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
+import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 
 import { makeStyles } from "@material-ui/core/styles";
 import colors from "../styles/colors";
-import ItemCard from "./ItemCard"
+import ItemCard from "./ItemCard";
 
 const useStyles = makeStyles((theme) => ({
   headers: {
@@ -32,10 +33,17 @@ function OngoingCard() {
           </Box>
         </Box>
         <List>
-          <ItemCard title="เพชรวิบวับนำเข้าจากอังกฤษ" time="เหลือเวลาอีก 20 นาที"/>
-          <ItemCard title="วิบวับวิบวับ" time="เหลือเวลาอีก 20 นาที"/>
+          <ItemCard
+            title="เพชรวิบวับนำเข้าจากอังกฤษ"
+            time="เหลือเวลาอีก 20 นาที"
+          />
+          <ItemCard title="วิบวับวิบวับ" time="เหลือเวลาอีก 20 นาที" />
         </List>
-        <GreenButton text="SHOW ALL ON-GOING" dest="/ongoing"/>
+        <GreenButton
+          text="SHOW ALL ON-GOING"
+          dest="/ongoing"
+          icon={<NavigateNextIcon />}
+        />
       </RoundPaper>
     </Box>
   );

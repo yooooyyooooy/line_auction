@@ -5,7 +5,7 @@ import { Box, List, Typography } from "@material-ui/core";
 import RoundPaper from "./RoundPaper";
 import GreenButton from "./GreenButton";
 import ShopTwoIcon from "@material-ui/icons/ShopTwo";
-
+import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import { makeStyles } from "@material-ui/core/styles";
 import colors from "../styles/colors";
 
@@ -31,7 +31,7 @@ function ShopsCard() {
           </Box>
         </Box>
         <List></List>
-        <GreenButton text="SHOW ALL SHOPS" dest="/shops" />
+        <GreenButton text="SHOW ALL SHOPS" dest="/shops" icon = {<NavigateNextIcon/>} />
       </RoundPaper>
     </Box>
   );

@@ -1,17 +1,20 @@
 import React from "react";
 
 //Components
-import { Box, List, ListItem, Typography } from "@material-ui/core";
+import { Box, Typography, TextField } from "@material-ui/core";
 import RoundPaper from "./RoundPaper";
-import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
+import AddIcon from "@material-ui/icons/Add";
 import BackButton from "../components/BackButton";
+import GreenButton from "../components/GreenButton";
+import CheckIcon from "@material-ui/icons/Check";
 
 import { makeStyles } from "@material-ui/core/styles";
 import colors from "../styles/colors";
 import { useHistory } from "react-router-dom";
+
 const useStyles = makeStyles((theme) => ({
   headers: {
-    color: colors.red,
+    color: colors.blue,
     display: "flex",
     justifyContent: "right",
     fontSize: headerFontSize,
@@ -25,38 +28,43 @@ const headerFontSize = {
   md: "1.7rem",
 };
 
-function OngoingPageCard() {
+function AddShopPageCard() {
   const classes = useStyles();
   const history = useHistory();
   return (
     <Box marginTop="5%">
-      <RoundPaper style={{ width: "80%",margin: "auto" }}>
-        <Box display="flex">
+      <RoundPaper style={{ width: "80%", margin: "auto" }}>
+        <Box display="flex" >
           <span
             onClick={(e) => {
-              history.push("/");
+              history.push("/shops");
             }}
           >
             <BackButton />
           </span>
           <Box className={classes.headers} marginLeft="auto">
             <Box marginRight="1rem">
-              <FiberManualRecordIcon fontSize="small" />
+              <AddIcon fontSize="small" />
             </Box>
             <Box>
-              <Typography>ON-GOING</Typography>
+              <Typography>ADD SHOP</Typography>
             </Box>
           </Box>
         </Box>
-        <List>
-          <ListItem>ayyyyy</ListItem>
-          <ListItem>ayyyyy</ListItem>
-          <ListItem>ayyyyy</ListItem>
-          <ListItem>ayyyyy</ListItem>
-        </List>
+        <Box align="center" marginY="4%">
+          <TextField
+            id="filled-required"
+            placeholder="SHOP CODE"
+            variant="outlined"
+            fullWidth
+          />
+        </Box>
+        <Box marginY="4%">
+          <GreenButton text="CONFIRM CODE" icon={<CheckIcon />} />
+        </Box>
       </RoundPaper>
     </Box>
   );
 }
 
-export default OngoingPageCard;
+export default AddShopPageCard;

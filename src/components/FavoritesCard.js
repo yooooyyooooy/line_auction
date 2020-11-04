@@ -5,6 +5,7 @@ import { Box, List, ListItem, Typography } from "@material-ui/core";
 import RoundPaper from "./RoundPaper";
 import GreenButton from "./GreenButton";
 import StarIcon from "@material-ui/icons/Star";
+import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import ItemCard from "./ItemCard";
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -31,7 +32,7 @@ function FavoritesCard() {
             <Typography>FAVORITES</Typography>
           </Box>
         </Box>
-        <List >
+        <List>
           <ListItem>
             <ItemCard />
           </ListItem>
@@ -39,7 +40,11 @@ function FavoritesCard() {
             <ItemCard />
           </ListItem>
         </List>
-        <GreenButton text="SHOW ALL FAVOURITES" dest="/favorites" />
+        <GreenButton
+          text="SHOW ALL FAVOURITES"
+          dest="/favorites"
+          icon={<NavigateNextIcon />}
+        />
       </RoundPaper>
     </Box>
   );

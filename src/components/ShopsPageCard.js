@@ -5,7 +5,8 @@ import { Box, List, ListItem, Typography } from "@material-ui/core";
 import RoundPaper from "./RoundPaper";
 import ShopTwoIcon from "@material-ui/icons/ShopTwo";
 import BackButton from "../components/BackButton";
-
+import AddIcon from "@material-ui/icons/Add";
+import GreenButton from "../components/GreenButton";
 import { makeStyles } from "@material-ui/core/styles";
 import colors from "../styles/colors";
 import { useHistory } from "react-router-dom";
@@ -33,7 +34,7 @@ function ShopsPageCard() {
   const history = useHistory();
   return (
     <Box marginTop="5%">
-      <RoundPaper style={{ width: "80%", marginTop: "10%", margin: "auto" }}>
+      <RoundPaper style={{ width: "80%", margin: "auto" }}>
         <Box display="flex">
           <span
             onClick={(e) => {
@@ -51,12 +52,17 @@ function ShopsPageCard() {
             </Box>
           </Box>
         </Box>
-        <List>
-          <ListItem>ayyyyy</ListItem>
-          <ListItem>ayyyyy</ListItem>
-          <ListItem>ayyyyy</ListItem>
-          <ListItem>ayyyyy</ListItem>
-        </List>
+        <Box marginY="4%">
+          <GreenButton text="ADD MORE SHOP" icon={<AddIcon />} dest = "/addshops" />
+        </Box>
+        <Box margin ="4%">
+          <List>
+            <ListItem>ayyyyy</ListItem>
+            <ListItem>ayyyyy</ListItem>
+            <ListItem>ayyyyy</ListItem>
+            <ListItem>ayyyyy</ListItem>
+          </List>
+        </Box>
       </RoundPaper>
     </Box>
   );

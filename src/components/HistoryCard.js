@@ -5,7 +5,7 @@ import { Box, List, ListItem, Typography } from "@material-ui/core";
 import RoundPaper from "./RoundPaper";
 import GreenButton from "./GreenButton";
 import ReplayIcon from "@material-ui/icons/Replay";
-
+import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import { makeStyles } from "@material-ui/core/styles";
 import colors from "../styles/colors";
 const useStyles = makeStyles((theme) => ({
@@ -33,7 +33,7 @@ function HistoryCard() {
           <ListItem />
           <ListItem />
         </List>
-        <GreenButton text="SHOW ALL HISTORY" dest="/history" />
+        <GreenButton text="SHOW ALL HISTORY" dest="/history" icon = {<NavigateNextIcon/>}/>
       </RoundPaper>
     </Box>
   );
