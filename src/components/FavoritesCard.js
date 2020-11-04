@@ -1,7 +1,7 @@
 import React from "react";
 
 //Components
-import { Box, List, ListItem, Typography } from "@material-ui/core";
+import { Box, List, Typography } from "@material-ui/core";
 import RoundPaper from "./RoundPaper";
 import GreenButton from "./GreenButton";
 import StarIcon from "@material-ui/icons/Star";
@@ -33,12 +33,10 @@ function FavoritesCard() {
           </Box>
         </Box>
         <List>
-          <ListItem>
-            <ItemCard />
-          </ListItem>
-          <ListItem>
-            <ItemCard />
-          </ListItem>
+        <ItemCard
+            title="เพชรวิบวับนำเข้าจากอังกฤษ"
+            time="เหลือเวลาอีก 20 นาที"
+          />
         </List>
         <GreenButton
           text="SHOW ALL FAVOURITES"
