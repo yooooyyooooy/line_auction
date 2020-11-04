@@ -8,6 +8,7 @@ import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
 
 import { makeStyles } from "@material-ui/core/styles";
 import colors from "../styles/colors";
+import ItemCard from "./ItemCard"
 
 const useStyles = makeStyles((theme) => ({
   headers: {
@@ -26,7 +27,9 @@ function OngoingCard() {
           <FiberManualRecordIcon fontSize="small" />
           <Typography>ON-GOING</Typography>
         </Box>
-        <List></List>
+        <List>
+          <ItemCard title="วิบวับวิบวับ" time="เหลือเวลาอีก 20 นาที"/>
+        </List>
         <GreenButton text="SHOW ALL ON-GOING" dest="/ongoing"/>
       </RoundPaper>
     </Box>
