@@ -36,26 +36,32 @@ function ShopsPageCard() {
     <Box marginTop="5%">
       <RoundPaper style={{ width: "80%", margin: "auto" }}>
         <Box display="flex">
-          <span
-            onClick={(e) => {
-              history.push("/");
-            }}
-          >
-            <BackButton />
-          </span>
+          <Box marginTop="-2%">
+            <span
+              onClick={(e) => {
+                history.goBack();
+              }}
+            >
+              <BackButton />
+            </span>
+          </Box>
           <Box className={classes.headers} marginLeft="auto">
             <Box marginRight="1rem">
               <ShopTwoIcon fontSize="small" marginRight="2rem" />
             </Box>
             <Box>
-              <Typography>SHOPS</Typography>
+              <Typography style={{ fontWeight: "bold" }}>SHOPS</Typography>
             </Box>
           </Box>
         </Box>
         <Box marginY="4%">
-          <GreenButton text="ADD MORE SHOP" icon={<AddIcon />} dest = "/addshops" />
+          <GreenButton
+            text="ADD MORE SHOP"
+            icon={<AddIcon />}
+            dest="/addshops"
+          />
         </Box>
-        <Box margin ="4%">
+        <Box margin="4%">
           <List>
             <ListItem>ayyyyy</ListItem>
             <ListItem>ayyyyy</ListItem>

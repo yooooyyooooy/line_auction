@@ -26,10 +26,10 @@ function FavoritesCard() {
       <RoundPaper style={{ width: "80%", margin: "auto" }}>
         <Box className={classes.headers}>
           <Box marginRight="1rem">
-            <StarIcon fontSize="small" />
+            <StarIcon  fontSize = "small"/>
           </Box>
-          <Box>
-            <Typography>FAVORITES</Typography>
+          <Box >
+            <Typography style ={{fontWeight : "bold"}}>FAVORITES</Typography>
           </Box>
         </Box>
         <List>

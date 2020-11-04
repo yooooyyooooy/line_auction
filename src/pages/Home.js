@@ -53,9 +53,9 @@ export default function Home() {
         </Box>
         <Box style={{ marginTop: "2%", marginLeft: "15%" }}>
           <Typography
-            style={{ fontSize: headerFontSize.md, color: colors.white }}
+            style={{ fontSize: headerFontSize.md, color: colors.white , fontWeight : "bold"}}
           >
-            {informationUserReducer.userName} Hello World
+            {informationUserReducer.userName} (Username)
             <br />
             {informationUserReducer.userID}
             <br />

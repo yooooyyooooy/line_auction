@@ -1,7 +1,7 @@
 import React from "react";
 
 //Components
-import { Box, List, ListItem, Typography } from "@material-ui/core";
+import { Box, List, Typography } from "@material-ui/core";
 import RoundPaper from "./RoundPaper";
 import GreenButton from "./GreenButton";
 import ReplayIcon from "@material-ui/icons/Replay";
@@ -26,12 +26,10 @@ function HistoryCard() {
             <ReplayIcon fontSize="small" />
           </Box>
           <Box>
-            <Typography>HISTORY</Typography>
+            <Typography style ={{fontWeight : "bold"}}>HISTORY</Typography>
           </Box>
         </Box>
         <List>
-          <ListItem />
-          <ListItem />
         </List>
         <GreenButton text="SHOW ALL HISTORY" dest="/history" icon = {<NavigateNextIcon/>}/>
       </RoundPaper>

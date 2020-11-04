@@ -27,7 +27,7 @@ function ShopsCard() {
             <ShopTwoIcon fontSize="small" marginRight="2rem" />
           </Box>
           <Box>
-            <Typography>SHOPS</Typography>
+            <Typography style ={{fontWeight : "bold"}}>SHOPS</Typography>
           </Box>
         </Box>
         <List></List>
