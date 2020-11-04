@@ -34,20 +34,22 @@ function AddShopPageCard() {
   return (
     <Box marginTop="5%">
       <RoundPaper style={{ width: "80%", margin: "auto" }}>
-        <Box display="flex" >
-          <span
-            onClick={(e) => {
-              history.push("/shops");
-            }}
-          >
-            <BackButton />
-          </span>
+        <Box display="flex">
+          <Box marginTop="-2%">
+            <span
+              onClick={(e) => {
+                history.goBack();
+              }}
+            >
+              <BackButton />
+            </span>
+          </Box>
           <Box className={classes.headers} marginLeft="auto">
             <Box marginRight="1rem">
               <AddIcon fontSize="small" />
             </Box>
             <Box>
-              <Typography>ADD SHOP</Typography>
+              <Typography style={{ fontWeight: "bold" }}>ADD SHOP</Typography>
             </Box>
           </Box>
         </Box>

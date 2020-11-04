@@ -31,21 +31,23 @@ function HistoryPageCard() {
   const history = useHistory();
   return (
     <Box marginTop="5%">
-      <RoundPaper style={{ width: "80%",margin: "auto" }}>
+      <RoundPaper style={{ width: "80%", margin: "auto" }}>
         <Box display="flex">
-          <span
-            onClick={(e) => {
-              history.push("/");
-            }}
-          >
-            <BackButton />
-          </span>
+          <Box marginTop="-2%">
+            <span
+              onClick={(e) => {
+                history.goBack();
+              }}
+            >
+              <BackButton />
+            </span>
+          </Box>
           <Box className={classes.headers} marginLeft="auto">
             <Box marginRight="1rem">
               <ReplayIcon fontSize="small" />
             </Box>
             <Box>
-              <Typography>HISTORY</Typography>
+              <Typography style={{ fontWeight: "bold" }}>HISTORY</Typography>
             </Box>
           </Box>
         </Box>

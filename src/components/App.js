@@ -6,6 +6,7 @@ import Favorite from "../pages/Favorite"
 import History from "../pages/History"
 import Shops from "../pages/Shops"
 import AddShops from  "../pages/AddShops"
+import Items from "../pages/Items"
 
 import {
   BrowserRouter as Router,
@@ -31,6 +32,9 @@ export default function App() {
           </Route>
           <Route path="/addshops">
             <AddShops/>
+          </Route>
+          <Route path="/items">
+            <Items/>
           </Route>
           <Route path="/">
             <Home />

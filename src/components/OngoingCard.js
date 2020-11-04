@@ -16,20 +16,21 @@ const useStyles = makeStyles((theme) => ({
     color: colors.red,
     display: "flex",
     justifyContent: "flex-end",
+
   },
 }));
 
 function OngoingCard() {
   const classes = useStyles();
   return (
-    <Box marginTop="0%">
+    <Box marginTop="0%" >
       <RoundPaper style={{ width: "80%", margin: "auto" }}>
         <Box className={classes.headers}>
           <Box marginRight="1rem">
             <FiberManualRecordIcon fontSize="small" />
           </Box>
-          <Box>
-            <Typography>ON-GOING</Typography>
+          <Box >
+            <Typography style ={{fontWeight : "bold"}}>ON-GOING</Typography>
           </Box>
         </Box>
         <List>

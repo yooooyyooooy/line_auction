@@ -1,0 +1,41 @@
+import React from "react"
+
+//components
+import Navbar from "../components/Navbar";
+import { Box } from "@material-ui/core";
+import Intersect from "../image/Intersect.svg";
+
+//mobile check
+import { isMobile } from "react-device-detect";
+import ItemPageCard from "../components/ItemPageCard";
+
+export default function Items(){
+  if (isMobile) {
+    return (
+      <>
+        <Navbar />
+        <div style={{ position: "relative", height: "100%" }}>
+          <img
+            style={{
+              position: "absolute",
+              zIndex: -1,
+              top: "-80px",
+              maxWidth: "100%",
+            }}
+            src={Intersect}
+            alt="Intersect"
+          />
+        </div>
+        <Box>
+           <ItemPageCard/>
+        </Box>
+      </>
+    );
+  }
+  return (
+    <>
+      <Navbar />
+      Hello World
+    </>
+  );
+}
