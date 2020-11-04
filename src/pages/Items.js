@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 
 //components
 import Navbar from "../components/Navbar";
@@ -9,7 +9,7 @@ import Intersect from "../image/Intersect.svg";
 import { isMobile } from "react-device-detect";
 import ItemPageCard from "../components/ItemPageCard";
 
-export default function Items(){
+export default function Items(props) {
   if (isMobile) {
     return (
       <>
@@ -27,7 +27,8 @@ export default function Items(){
           />
         </div>
         <Box>
-           <ItemPageCard/>
+          {/* {props.match.params.id} */}
+          <ItemPageCard id = {props.match.params.id}/>
         </Box>
       </>
     );
