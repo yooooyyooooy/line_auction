@@ -5,7 +5,7 @@ import store from "../reduxStore";
 // import axios from "axios";
 
 async function FetchLiff() {
-  await liff.init({ liffId: "1655202326-WwoNeaxV" }).catch((err) => {
+  await liff.init({ liffId: "1655206384-XQoOgdqp" }).catch((err) => {
     throw err;
   });
   if (liff.isLoggedIn()) {
