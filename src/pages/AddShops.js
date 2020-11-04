@@ -1,16 +1,15 @@
-import React from "react";
+import React from "react"
 
 //components
 import Navbar from "../components/Navbar";
 import { Box } from "@material-ui/core";
 import Intersect from "../image/Intersect.svg";
-import HistoryPageCard from "../components/HistoryPageCard"
+import AddShopPageCard from "../components/AddShopsPageCard"
 
+//mobile check
 import { isMobile } from "react-device-detect";
 
-
-
-export default function History() {
+export default function AddShops(){
   if (isMobile) {
     return (
       <>
@@ -28,7 +27,7 @@ export default function History() {
           />
         </div>
         <Box>
-           <HistoryPageCard/> 
+           <AddShopPageCard/> 
         </Box>
       </>
     );

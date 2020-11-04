@@ -10,7 +10,7 @@ export default function GreenButton(props) {
         history.push(props.dest)
     },[history,props.dest])
     return (
-        <Button onClick={presshandle} style={{backgroundColor : colors.green, width : "100%" , color:"white"}} >
+        <Button onClick={presshandle} style={{backgroundColor : colors.green, width : "100%" , color:"white"}} endIcon = {props.icon}>
             <div>
                 {props.text}
             </div>

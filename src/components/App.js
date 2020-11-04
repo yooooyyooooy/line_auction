@@ -5,6 +5,7 @@ import Ongoing from "../pages/Ongoing"
 import Favorite from "../pages/Favorite"
 import History from "../pages/History"
 import Shops from "../pages/Shops"
+import AddShops from  "../pages/AddShops"
 
 import {
   BrowserRouter as Router,
@@ -27,6 +28,9 @@ export default function App() {
           </Route>
           <Route path="/shops">
             <Shops/>
+          </Route>
+          <Route path="/addshops">
+            <AddShops/>
           </Route>
           <Route path="/">
             <Home />

@@ -37,7 +37,7 @@ export default function Home() {
             style={{
               position: "absolute",
               zIndex: -1,
-              top: "-25vh",
+              top: "-80px",
               maxWidth: "100%",
             }}
             src={Intersect}
