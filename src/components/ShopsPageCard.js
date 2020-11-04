@@ -47,7 +47,7 @@ function ShopsPageCard() {
           </Box>
           <Box className={classes.headers} marginLeft="auto">
             <Box marginRight="1rem">
-              <ShopTwoIcon fontSize="small" marginRight="2rem" />
+              <ShopTwoIcon fontSize="small" />
             </Box>
             <Box>
               <Typography style={{ fontWeight: "bold" }}>SHOPS</Typography>

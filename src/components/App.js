@@ -14,6 +14,7 @@ import {
   Route,
 } from "react-router-dom";
 
+
 export default function App() {
   return (
     <Router>
@@ -33,9 +34,7 @@ export default function App() {
           <Route path="/addshops">
             <AddShops/>
           </Route>
-          <Route path="/items">
-            <Items/>
-          </Route>
+          <Route path="/items/:id" component = {Items}/>
           <Route path="/">
             <Home />
           </Route>

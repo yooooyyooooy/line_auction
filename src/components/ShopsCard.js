@@ -24,7 +24,7 @@ function ShopsCard() {
       <RoundPaper style={{ width: "80%", margin: "auto" }}>
         <Box className={classes.headers}>
           <Box marginRight="1rem">
-            <ShopTwoIcon fontSize="small" marginRight="2rem" />
+            <ShopTwoIcon fontSize="small" />
           </Box>
           <Box>
             <Typography style ={{fontWeight : "bold"}}>SHOPS</Typography>
