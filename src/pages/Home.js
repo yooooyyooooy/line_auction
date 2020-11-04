@@ -8,7 +8,7 @@ import HistoryCard from "../components/HistoryCard";
 import Navbar from "../components/Navbar";
 import { Box, Typography } from "@material-ui/core";
 import Intersect from "../image/Intersect.svg";
-
+import LandingDesktop from "../components/LandingDesktop"
 //redux
 import { useSelector } from "react-redux";
 
@@ -74,7 +74,7 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      Hello World
+      <LandingDesktop />
     </>
   );
 }
