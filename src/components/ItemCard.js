@@ -8,7 +8,7 @@ import {useHistory} from "react-router-dom"
 
 const imgStyle = {
     maxWidth:"100%",
-    maxHeight:"100%",
+    height:"auto",
     objectFit:"cover"
 }
 
