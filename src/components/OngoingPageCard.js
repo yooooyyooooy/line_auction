@@ -15,6 +15,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "right",
     fontSize: headerFontSize,
+    marginTop: "1%",
   },
 }));
 
@@ -32,7 +33,7 @@ function OngoingPageCard() {
     <Box marginTop="5%">
       <RoundPaper style={{ width: "80%", margin: "auto" }}>
         <Box display="flex">
-          <Box marginTop = "-2%">
+          <Box >
             <span
               onClick={(e) => {
                 history.goBack();

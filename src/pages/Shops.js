@@ -13,6 +13,7 @@ import ShopsPageCard from "../components/ShopsPageCard"
 
 export default function Shops() {
   if (isMobile) {
+    console.log("yes")
     return (
       <>
         <Navbar />

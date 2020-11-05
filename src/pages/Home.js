@@ -53,7 +53,11 @@ export default function Home() {
         </Box>
         <Box style={{ marginTop: "2%", marginLeft: "15%" }}>
           <Typography
-            style={{ fontSize: headerFontSize.md, color: colors.white , fontWeight : "bold"}}
+            style={{
+              fontSize: headerFontSize.md,
+              color: colors.white,
+              fontWeight: "bold",
+            }}
           >
             {informationUserReducer.userName} (Username)
             <br />
@@ -62,7 +66,7 @@ export default function Home() {
             {informationUserReducer.userEmail}
           </Typography>
         </Box>
-        <Box marginY = "2%" marginX = "auto" >
+        <Box marginY="2%" marginX="auto">
           <OngoingCard />
           <FavoritesCard />
           <ShopsCard />

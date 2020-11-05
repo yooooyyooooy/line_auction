@@ -31,12 +31,8 @@ export default function LandingDesktop() {
             justifyContent="space-between"
           >
             <Box>
-              <Typography>
-                HAVE SOMETHING TO BID?
-              </Typography>
-              <Typography>
-                DON'T LET IT SLIT
-              </Typography>
+              <Typography>HAVE SOMETHING TO BID?</Typography>
+              <Typography>DON'T LET IT SLIT</Typography>
             </Box>
             <Box>
               JOIN US IN THE BIDDING COMMUNITY WHERE BIDDING IS EASIER THAN
@@ -49,9 +45,7 @@ export default function LandingDesktop() {
                 </Button>
               </Box>
               <Box>
-                <Button variant="contained" >
-                  สมัครสมาชิก
-                </Button>
+                <Button variant="contained">สมัครสมาชิก</Button>
               </Box>
             </Box>
           </Box>

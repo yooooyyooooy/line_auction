@@ -2,7 +2,7 @@ import React from "react"
 
 import colors from "../styles/colors"
 import {Box,Button} from "@material-ui/core"
-import Diamonds from "../image/diamonds.png";
+import Diamonds from "../image/diamonds.svg";
 import {useHistory} from "react-router-dom"
 
 const imgStyle = {
@@ -25,7 +25,7 @@ const headerFontSize = {
 export default function ItemCard(props) {
     const history = useHistory()
     return (
-        <Button onClick={()=>{history.push("/items/20")}} variant="contained" style={{backgroundColor:colors.yellow,marginBottom:"3%"}} >
+        <Button onClick={()=>{history.push("/items/20")}} variant="contained" style={{backgroundColor:colors.yellow,marginBottom:"3%"}} fullWidth>
             <Box display="flex" justifyContent="space-between">
 
                 <Box width="30%" justifyContent="center">

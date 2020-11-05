@@ -8,7 +8,7 @@ import StarBorderIcon from "@material-ui/icons/StarBorder";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import BackButton from "../components/BackButton";
 import GreenButton from "../components/GreenButton";
-import Diamonds from "../image/diamonds.png";
+import Diamonds from "../image/diamonds.svg";
 
 import { makeStyles } from "@material-ui/core/styles";
 import colors from "../styles/colors";
@@ -18,9 +18,11 @@ const useStyles = makeStyles((theme) => ({
     color: colors.grey,
     display: "flex",
     justifyContent: "right",
+    marginTop: "1%"
   },
   pictures: {
     maxWidth: "100%",
+    
   },
   heading1: {
     fontWeight: "bold",
@@ -56,7 +58,7 @@ function ItemPageCard(props) {
     <Box marginTop="5%">
       <RoundPaper style={{ width: "80%", margin: "auto" }}>
         <Box display="flex" className={classes.headers}>
-          <Box marginTop="-2%">
+          <Box >
             <span
               onClick={(e) => {
                 history.goBack();
@@ -65,7 +67,7 @@ function ItemPageCard(props) {
               <BackButton />
             </span>
           </Box>
-          <Box marginLeft="auto" marginTop="-5%">
+          <Box marginLeft="auto" marginTop = "-1%">
             <span onClick={handleClick}>
               <IconButton>
                 {clicks ? (
@@ -77,13 +79,13 @@ function ItemPageCard(props) {
             </span>
           </Box>
         </Box>
-        <Box marginTop="4%">
+        <Box marginTop="4%" align  = "center" >
           <img src={Diamonds} alt={1} className={classes.pictures} />
         </Box>
         <Box marginTop="4%">
           <Box>
             <Typography className={classes.heading1} variant="h6">
-              id : {props.id}
+              ids : {props.id}
             </Typography>
           </Box>
           <Box>

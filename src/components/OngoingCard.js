@@ -33,7 +33,7 @@ function OngoingCard() {
             <Typography style ={{fontWeight : "bold"}}>ON-GOING</Typography>
           </Box>
         </Box>
-        <List>
+        <List >
           <ItemCard
             title="เพชรวิบวับนำเข้าจากอังกฤษ"
             time="เหลือเวลาอีก 20 นาที"
