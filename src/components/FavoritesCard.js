@@ -32,12 +32,17 @@ function FavoritesCard() {
             <Typography style ={{fontWeight : "bold"}}>FAVORITES</Typography>
           </Box>
         </Box>
-        <List>
-        <ItemCard
-            title="เพชรวิบวับนำเข้าจากอังกฤษ"
-            time="เหลือเวลาอีก 20 นาที"
-          />
-        </List>
+        <Box  marginTop="3%">
+          <List>
+            <ItemCard
+              title="เพชรวิบวับนำเข้าจากอังกฤษ"
+              time="เหลือเวลาอีก 20 นาที"
+            />
+            <ItemCard 
+              title="วิบวับวิบวับ"
+              time="เหลือเวลาอีก 20 นาที" />
+          </List>
+        </Box>
         <GreenButton
           text="SHOW ALL FAVOURITES"
           dest="/favorites"

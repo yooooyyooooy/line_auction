@@ -6,12 +6,13 @@ import { Box } from "@material-ui/core";
 import Intersect from "../image/Intersect.svg";
 
 //mobile check
-import { isMobile } from "react-device-detect";
+import { isMobile,isTablet } from "react-device-detect";
 
 import FavoritePageCard from "../components/FavoritePageCard"
 
 
 export default function Favorite() {
+  const shift = isTablet ? "-5vh" : "-80px"
   if (isMobile) {
     return (
       <>
@@ -21,7 +22,7 @@ export default function Favorite() {
             style={{
               position: "absolute",
               zIndex: -1,
-              top: "-80px",
+              top: shift,
               maxWidth: "100%",
             }}
             src={Intersect}

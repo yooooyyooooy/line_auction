@@ -29,17 +29,21 @@ function OngoingCard() {
           <Box marginRight="1rem">
             <FiberManualRecordIcon fontSize="small" />
           </Box>
-          <Box >
+          <Box>
             <Typography style ={{fontWeight : "bold"}}>ON-GOING</Typography>
           </Box>
         </Box>
-        <List >
-          <ItemCard
-            title="เพชรวิบวับนำเข้าจากอังกฤษ"
-            time="เหลือเวลาอีก 20 นาที"
-          />
-          <ItemCard title="วิบวับวิบวับ" time="เหลือเวลาอีก 20 นาที" />
-        </List>
+        <Box  marginTop="3%">
+          <List>
+            <ItemCard
+              title="เพชรวิบวับนำเข้าจากอังกฤษ"
+              time="เหลือเวลาอีก 20 นาที"
+            />
+            <ItemCard 
+              title="วิบวับวิบวับ"
+              time="เหลือเวลาอีก 20 นาที" />
+          </List>
+        </Box>
         <GreenButton
           text="SHOW ALL ON-GOING"
           dest="/ongoing"
