@@ -15,7 +15,8 @@ const useStyles = makeStyles((theme) => ({
     color: colors.blue,
     display: "flex",
     justifyContent: "right",
-    fontSize : headerFontSize
+    fontSize : headerFontSize,
+    marginTop: "1%"
   },
 }));
 
@@ -33,7 +34,7 @@ function FavoritePageCard() {
     <Box marginTop="5%">
       <RoundPaper style={{ width: "80%", marginTop: "10%", margin: "auto" }}>
         <Box display="flex">
-          <Box marginTop="-2%">
+          <Box >
             <span
               onClick={(e) => {
                 history.goBack();

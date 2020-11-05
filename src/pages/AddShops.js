@@ -14,7 +14,7 @@ export default function AddShops(){
     return (
       <>
         <Navbar />
-        <div style={{ position: "relative", height: "100%" }}>
+        <div style={{ position: "relative", height: "20%" }}>
           <img
             style={{
               position: "absolute",
