@@ -8,6 +8,7 @@ import ReplayIcon from "@material-ui/icons/Replay";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import { makeStyles } from "@material-ui/core/styles";
 import colors from "../styles/colors";
+import ItemCard from "./ItemCard"
 const useStyles = makeStyles((theme) => ({
   headers: {
     color: colors.blue,
@@ -29,8 +30,17 @@ function HistoryCard() {
             <Typography style ={{fontWeight : "bold"}}>HISTORY</Typography>
           </Box>
         </Box>
-        <List>
-        </List>
+        <Box  marginTop="3%">
+          <List>
+            <ItemCard
+              title="เพชรวิบวับนำเข้าจากอังกฤษ"
+              time="เหลือเวลาอีก 20 นาที"
+            />
+            <ItemCard 
+              title="วิบวับวิบวับ"
+              time="เหลือเวลาอีก 20 นาที" />
+          </List>
+        </Box>
         <GreenButton text="SHOW ALL HISTORY" dest="/history" icon = {<NavigateNextIcon/>}/>
       </RoundPaper>
     </Box>

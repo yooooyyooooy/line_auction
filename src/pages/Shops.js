@@ -4,7 +4,7 @@ import Navbar from "../components/Navbar";
 import { Box } from "@material-ui/core";
 import Intersect from "../image/Intersect.svg";
 
-import { isMobile } from "react-device-detect";
+import { isMobile,isTablet } from "react-device-detect";
 
 import ShopsPageCard from "../components/ShopsPageCard"
 
@@ -12,6 +12,7 @@ import ShopsPageCard from "../components/ShopsPageCard"
 
 
 export default function Shops() {
+  const shift = isTablet ? "-5vh" : "-80px"
   if (isMobile) {
     console.log("yes")
     return (
@@ -22,7 +23,7 @@ export default function Shops() {
             style={{
               position: "absolute",
               zIndex: -1,
-              top: "-80px",
+              top: shift,
               maxWidth: "100%",
             }}
             src={Intersect}

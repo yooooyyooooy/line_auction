@@ -12,7 +12,7 @@ import LandingDesktop from "../components/LandingDesktop"
 //redux
 import { useSelector } from "react-redux";
 
-import { isMobile } from "react-device-detect";
+import { isMobile,isTablet } from "react-device-detect";
 
 /* initialize fontSize for responsive mode */
 const headerFontSize = {
@@ -25,6 +25,7 @@ const headerFontSize = {
  
 
 export default function Home() {
+  const shift = isTablet ? "-20vh" : "-80px"
   const informationUserReducer = useSelector(
     ({ informationReducer }) => informationReducer
   );
@@ -37,7 +38,7 @@ export default function Home() {
             style={{
               position: "absolute",
               zIndex: -1,
-              top: "-80px",
+              top: shift,
               maxWidth: "100%",
             }}
             src={Intersect}

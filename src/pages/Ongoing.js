@@ -4,7 +4,7 @@ import Navbar from "../components/Navbar";
 import { Box } from "@material-ui/core";
 import Intersect from "../image/Intersect.svg";
 
-import { isMobile } from "react-device-detect";
+import { isMobile,isTablet } from "react-device-detect";
 
 import OngoingPageCard from "../components/OngoingPageCard"
 
@@ -12,6 +12,7 @@ import OngoingPageCard from "../components/OngoingPageCard"
 
 
 export default function Ongoing() {
+  const shift = isTablet ? "-5vh" : "-80px"
   if (isMobile) {
     return (
       <>
@@ -21,7 +22,7 @@ export default function Ongoing() {
             style={{
               position: "absolute",
               zIndex: -1,
-              top: "-80px",
+              top: shift,
               maxWidth: "100%",
             }}
             src={Intersect}
