@@ -2,6 +2,7 @@ import React from "react";
 import { Box, Typography, Button } from "@material-ui/core";
 import backGroundDesktop from "../image/backgroundDesktop.svg";
 import imageDesktop from "../image/imageDesktop.svg";
+import YellowButton from "./YellowButton"
 export default function LandingDesktop() {
   return (
     <>
@@ -38,16 +39,17 @@ export default function LandingDesktop() {
               JOIN US IN THE BIDDING COMMUNITY WHERE BIDDING IS EASIER THAN
               EVER!
             </Box>
-            <Box display="flex">
-              <Box marginRight="1em">
-                <Button variant="outlined" color="primary">
-                  เข้าสู่ระบบ
-                </Button>
-              </Box>
-              <Box>
-                <Button variant="contained">สมัครสมาชิก</Button>
-              </Box>
-            </Box>
+            <Box width="50%" style={{display:"flex",justifyContent:"center",alignItems:"center"}}>
+                        <Box>
+
+                            <Button variant="outlined" style={{marginRight:"1.5vw",color:"white"}}>
+                                เข้าสู่ระบบ
+                            </Button>
+                            <YellowButton>
+                                สมัครสมาชิก
+                            </YellowButton>
+                        </Box>
+                    </Box>
           </Box>
 
           <Box width="400px" height="400px">

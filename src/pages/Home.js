@@ -40,6 +40,7 @@ export default function Home() {
               zIndex: -1,
               top: shift,
               maxWidth: "100%",
+              width:"100%"
             }}
             src={Intersect}
             alt="Intersect"
