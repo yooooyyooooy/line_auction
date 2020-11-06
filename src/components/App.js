@@ -7,6 +7,7 @@ import History from "../pages/History"
 import Shops from "../pages/Shops"
 import AddShops from  "../pages/AddShops"
 import Items from "../pages/Items"
+import Login from "../pages/Login"
 
 import {
   BrowserRouter as Router,
@@ -35,6 +36,9 @@ export default function App() {
             <AddShops/>
           </Route>
           <Route path="/items/:id" component = {Items}/>
+          <Route path="/login">
+            <Login/>
+          </Route>
           <Route path="/">
             <Home />
           </Route>

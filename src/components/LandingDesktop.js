@@ -1,21 +1,18 @@
-import React from "react";
+import React,{useCallback} from "react";
 import { Box, Typography, Button } from "@material-ui/core";
-import backGroundDesktop from "../image/backgroundDesktop.svg";
 import imageDesktop from "../image/imageDesktop.svg";
+import YellowButton from "./YellowButton"
+import Background from "./Background"
+import {useHistory} from "react-router-dom"
 export default function LandingDesktop() {
+  const history = useHistory()
+  const loginHandler = useCallback(e=> {
+    history.push("/login")
+  },[history])
   return (
     <>
       <Box width="100%">
-        <img
-          style={{
-            position: "absolute",
-            zIndex: -1,
-            top: "0",
-            maxWidth: "100%",
-          }}
-          src={backGroundDesktop}
-          alt="backGroundDesktop"
-        />
+        <Background/>
         <Box
           display="flex"
           justifyContent="center"
@@ -38,16 +35,17 @@ export default function LandingDesktop() {
               JOIN US IN THE BIDDING COMMUNITY WHERE BIDDING IS EASIER THAN
               EVER!
             </Box>
-            <Box display="flex">
-              <Box marginRight="1em">
-                <Button variant="outlined" color="primary">
-                  เข้าสู่ระบบ
-                </Button>
-              </Box>
-              <Box>
-                <Button variant="contained">สมัครสมาชิก</Button>
-              </Box>
-            </Box>
+            <Box width="50%" style={{display:"flex",justifyContent:"center",alignItems:"center"}}>
+                        <Box>
+
+                            <Button variant="outlined" style={{marginRight:"1.5vw",color:"white"}} onClick={loginHandler}>
+                                เข้าสู่ระบบ
+                            </Button>
+                            <YellowButton>
+                                สมัครสมาชิก
+                            </YellowButton>
+                        </Box>
+                    </Box>
           </Box>
 
           <Box width="400px" height="400px">
