@@ -1,12 +1,17 @@
-import React from "react";
+import React,{useCallback} from "react";
 import { AppBar, Toolbar, Box, Button ,Typography} from "@material-ui/core";
 import colors from "../styles/colors.js";
 import YellowButton from "./YellowButton";
 import GavelIcon from "@material-ui/icons/Gavel"
+import {useHistory} from "react-router-dom"
 
 
 
 export default function NavbarDesktop() {
+    const history = useHistory() ;
+    const loginHandler = useCallback(e=> {
+        history.push('/login') ;
+      },[history])
     return (
         <AppBar style={{ backgroundColor: colors.darkBlue }} position="sticky">
             <Toolbar style={{ justifyContent: "space-between" }}>
@@ -17,7 +22,7 @@ export default function NavbarDesktop() {
                     </div>
                     <Box width="50%" style={{display:"flex",justifyContent:"center",alignItems:"center"}}>
                         <Box>
-                            <Button style={{marginRight:"1.5vw",color:"white"}}>
+                            <Button style={{marginRight:"1.5vw",color:"white"}} onClick={loginHandler}>
                                 เข้าสู่ระบบ
                             </Button>
                             <YellowButton>

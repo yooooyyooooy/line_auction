@@ -1,6 +1,6 @@
 import React from "react"
 import RoundPaper from "./RoundPaper"
-import {Box,TextField,Button} from "@material-ui/core"
+import {Box,TextField} from "@material-ui/core"
 import GreenButton from "./GreenButton"
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 
@@ -9,9 +9,9 @@ export default function LoginCard() {
     return (
         <RoundPaper style={{width:"50%",margin:"auto",marginTop:"7%"}}>
             <Box style={{justifyContent:"center",display:"flex"}}>
-                เข้าสู่ระบบ
+                <h1>เข้าสู่ระบบ</h1>
             </Box>
-            <Box width="95%" marginX="auto" marginTop="3%">
+            <Box width="95%" marginX="auto" marginTop="1%">
                 <TextField id="outlined-basic" label="อีเมล" variant="outlined" style={{width:"100%"}} />
             </Box>
             <Box width="95%" marginX="auto" marginTop="3%">
