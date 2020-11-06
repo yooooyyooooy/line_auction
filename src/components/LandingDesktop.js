@@ -3,20 +3,12 @@ import { Box, Typography, Button } from "@material-ui/core";
 import backGroundDesktop from "../image/backgroundDesktop.svg";
 import imageDesktop from "../image/imageDesktop.svg";
 import YellowButton from "./YellowButton"
+import Background from "./Background"
 export default function LandingDesktop() {
   return (
     <>
       <Box width="100%">
-        <img
-          style={{
-            position: "absolute",
-            zIndex: -1,
-            top: "0",
-            maxWidth: "100%",
-          }}
-          src={backGroundDesktop}
-          alt="backGroundDesktop"
-        />
+        <Background/>
         <Box
           display="flex"
           justifyContent="center"
