@@ -12,16 +12,24 @@ export default function NavbarDesktop() {
     const loginHandler = useCallback(e=> {
         history.push('/login') ;
       },[history])
+    const homeHandle = useCallback(
+        (e) => {
+          history.push("/");
+        },
+        [history]
+      );
     return (
         <AppBar style={{ backgroundColor: colors.darkBlue }} position="sticky">
             <Toolbar style={{ justifyContent: "space-between" }}>
                 <Box width="100%" display="flex">
-                    <div style={{width:"50%",display:"flex",justifyContent:"center",alignItems:"center"}} >
-                        <GavelIcon style={{marginRight:"6%"}}/>
+                    <div style={{width:"50%",display:"flex",alignItems:"center"}} >
+                        <span onClick={homeHandle} style={{marginLeft:"18%",marginRight:"1.5%"}}>
+                            <GavelIcon/>
+                        </span>
                         <Typography style={{fontSize:"1.3rem"}}>Master-Method Bidding</Typography>
                     </div>
-                    <Box width="50%" style={{display:"flex",justifyContent:"center",alignItems:"center"}}>
-                        <Box>
+                    <Box width="50%" style={{display:"flex",alignItems:"center",justifyContent:"flex-end"}}>
+                        <Box marginRight="18%">
                             <Button style={{marginRight:"1.5vw",color:"white"}} onClick={loginHandler}>
                                 เข้าสู่ระบบ
                             </Button>

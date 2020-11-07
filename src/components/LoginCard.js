@@ -7,7 +7,7 @@ import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 
 export default function LoginCard() {
     return (
-        <RoundPaper style={{width:"50%",margin:"auto",marginTop:"7%"}}>
+        <RoundPaper style={{width:"40%",margin:"auto",marginTop:"4%"}}>
             <Box style={{justifyContent:"center",display:"flex"}}>
                 <h1>เข้าสู่ระบบ</h1>
             </Box>
@@ -15,7 +15,7 @@ export default function LoginCard() {
                 <TextField id="outlined-basic" label="อีเมล" variant="outlined" style={{width:"100%"}} />
             </Box>
             <Box width="95%" marginX="auto" marginTop="3%">
-                <TextField id="outlined-basic" label="รหัสผ่าน" variant="outlined" style={{width:"100%"}} />
+                <TextField id="outlined-basic" type="password" label="รหัสผ่าน" variant="outlined" style={{width:"100%"}} />
             </Box>
             <Box width="90%" overflow="hidden" marginX="auto" marginTop="3%" >
                 <Box style={{float:"right"}}>
