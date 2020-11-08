@@ -28,7 +28,6 @@ export default function Items(props) {
           />
         </div>
         <Box>
-          {/* {props.match.params.id} */}
           <ItemPageCard id = {props.match.params.id}/>
         </Box>
       </>

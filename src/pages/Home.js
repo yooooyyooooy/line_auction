@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import colors from "../styles/colors";
 import FavoritesCard from "../components/FavoritesCard";
@@ -8,11 +8,16 @@ import HistoryCard from "../components/HistoryCard";
 import Navbar from "../components/Navbar";
 import { Box, Typography } from "@material-ui/core";
 import Intersect from "../image/Intersect.svg";
-import LandingDesktop from "../components/LandingDesktop"
+import LandingDesktop from "../components/LandingDesktop";
 //redux
 import { useSelector } from "react-redux";
+import store from "../reduxStore";
+import * as informationUserAction from "../actions/InformationUser.action";
 
-import { isMobile,isTablet } from "react-device-detect";
+//firebase
+import { firestore } from "../utils/setFirebase";
+
+import { isMobile, isTablet } from "react-device-detect";
 
 /* initialize fontSize for responsive mode */
 const headerFontSize = {
@@ -22,17 +27,41 @@ const headerFontSize = {
 };
 
 // will do "makeStyles"
- 
 
 export default function Home() {
-  const shift = isTablet ? "-20vh" : "-80px"
+  const [allShop, setAllShop] = useState([]);
+  const [allOnbidding, setAllOnbidding] = useState([]);
+  const [allHistory, setAllHistory] = useState([]);
+  const [allFav, setAllFav] = useState([]);
   const informationUserReducer = useSelector(
     ({ informationReducer }) => informationReducer
   );
+  useEffect(() => {
+    if (informationUserReducer.userId) {
+      firestore
+        .collection("users")
+        .doc(informationUserReducer.userId)
+        .onSnapshot(function (doc) {
+            setAllShop(doc.data().favoriteStore);
+            setAllFav(doc.data().favoriteItem);
+            setAllOnbidding(doc.data().onBidding);
+            setAllHistory(doc.data().history);
+            store.dispatch(
+              informationUserAction.setCredit({
+               credit:doc.data().credits
+              })
+            );
+          })
+        };
+    
+  }, [informationUserReducer.userId]);
+
+  const shift = isTablet ? "-20vh" : "-80px";
+
   if (isMobile) {
     return (
       <>
-        <Navbar />
+        <Navbar/>
         <div style={{ position: "relative", height: "100%" }}>
           <img
             style={{
@@ -40,7 +69,7 @@ export default function Home() {
               zIndex: -1,
               top: shift,
               maxWidth: "100%",
-              width:"100%"
+              width: "100%",
             }}
             src={Intersect}
             alt="Intersect"
@@ -61,18 +90,15 @@ export default function Home() {
               fontWeight: "bold",
             }}
           >
-            {informationUserReducer.userName} (Username)
+            {informationUserReducer.userName}
             <br />
-            {informationUserReducer.userID}
-            <br />
-            {informationUserReducer.userEmail}
           </Typography>
         </Box>
         <Box marginY="2%" marginX="auto">
-          <OngoingCard />
-          <FavoritesCard />
-          <ShopsCard />
-          <HistoryCard />
+          <OngoingCard data={allOnbidding} />
+          <ShopsCard data={allShop} />
+          <FavoritesCard data={allFav} />
+          <HistoryCard data={allHistory} />
         </Box>
       </>
     );
