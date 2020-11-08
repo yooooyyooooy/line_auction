@@ -2,6 +2,8 @@ import React from "react";
 import { Button, Box } from "@material-ui/core";
 import colors from "../styles/colors";
 import { isTablet } from "react-device-detect";
+import { useSelector } from "react-redux";
+import axios from "axios";
 
 const headerFontSize = {
   xs: "1.3rem",
@@ -11,12 +13,28 @@ const headerFontSize = {
 };
 
 export default function GreenButton(props) {
-
+  const informationUserReducer = useSelector(
+    ({ informationReducer }) => informationReducer
+  );
   const myFont = isTablet ? headerFontSize.md : "1rem";
-
+  async function send() {
+    const res = await axios.put(
+      `https://asia-east2-line-auction-backend.cloudfunctions.net/item/${props.id}`,
+      {
+        userId: informationUserReducer.userId,
+        username: informationUserReducer.userName,
+        // userId:"U4926644b51833230d9fe6299bb8ede28",
+        // username:"PLEUM"
+      }
+    );
+    console.log(res);
+  }
+  function pay() {
+    // liff.closeWindow()
+  }
   return (
     <Button
-      // onClick={props.type === "RUNNING" ? send : pay}
+      onClick={props.type === "RUNNING" ? send : pay}
       style={{
         backgroundColor: colors.green,
         width: "100%",
