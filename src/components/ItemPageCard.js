@@ -13,6 +13,8 @@ import Diamonds from "../image/diamonds.svg";
 import { makeStyles } from "@material-ui/core/styles";
 import colors from "../styles/colors";
 import { useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
+import axios from "axios";
 
 import { firestore } from "../utils/setFirebase";
 
@@ -77,7 +79,22 @@ function ItemPageCard(props) {
     fetch();
     console.log(props.id);
   }, [props.id]);
-
+  const informationUserReducer = useSelector(
+    ({ informationReducer }) => informationReducer
+  );
+  async function send() {
+    const res = await axios.put(
+      `https://asia-east2-line-auction-backend.cloudfunctions.net/item/${props.id}`,
+      {
+        userId: informationUserReducer.userId,
+        username: informationUserReducer.userName,
+      }
+    );
+    console.log(res);
+  }
+  function pay() {
+    // liff.closeWindow()
+  }
   return (
     <Box marginTop="5%">
       <RoundPaper style={{ width: "80%", margin: "auto" }}>
@@ -147,6 +164,7 @@ function ItemPageCard(props) {
               icon={<NavigateNextIcon />}
               id={props.id}
               type={"RUNNING"}
+              onClick = {intime ? send : pay}
             />
           ) : (
             <GreenButton
