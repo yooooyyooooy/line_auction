@@ -12,4 +12,8 @@ export const setInformationToLogout = () => ({
   type: "LOGOUT",
 });
 
+export const setCredit = (payload) => ({
+  type: "SET_COIN",
+  payload
+});
 

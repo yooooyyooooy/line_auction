@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState,useEffect } from "react";
 
 //Components
 import { Box, List, Typography } from "@material-ui/core";
@@ -9,6 +9,10 @@ import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import { makeStyles } from "@material-ui/core/styles";
 import colors from "../styles/colors";
 import ItemCard from "./ItemCard"
+
+import { firestore } from "../utils/setFirebase";
+
+
 const useStyles = makeStyles((theme) => ({
   headers: {
     color: colors.blue,
@@ -17,8 +21,28 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function HistoryCard() {
+function HistoryCard({data}) {
   const classes = useStyles();
+  const [dataHistory, setDataHistory] = useState([])
+  useEffect(() => {
+    setDataHistory([]);
+    if (data && data !== "") {
+      let v = [];
+      firestore
+        .collection("items")
+        .get()
+        .then(function(snapshot){
+          snapshot.forEach(function (doc) {
+            if (data.includes(doc.id)) {
+              let x = doc.data();
+              x.ID = doc.id;
+              v.push(x);
+            }
+          });
+          setDataHistory(v);
+        });
+    }
+  }, [data]);
   return (
     <Box marginTop="5%">
       <RoundPaper style={{ width: "80%", margin: "auto" }}>
@@ -32,13 +56,17 @@ function HistoryCard() {
         </Box>
         <Box  marginTop="3%">
           <List>
-            <ItemCard
-              title="เพชรวิบวับนำเข้าจากอังกฤษ"
-              time="เหลือเวลาอีก 20 นาที"
-            />
-            <ItemCard 
-              title="วิบวับวิบวับ"
-              time="เหลือเวลาอีก 20 นาที" />
+          {dataHistory &&
+              dataHistory.map((e, index) => {
+                return (
+                  <ItemCard
+                    key={index}
+                    title={e.title}
+                    id={e.ID}
+                    time="เหลือเวลาอีก 20 นาที"
+                  />
+                );
+              })}
           </List>
         </Box>
         <GreenButton text="SHOW ALL HISTORY" dest="/history" icon = {<NavigateNextIcon/>}/>

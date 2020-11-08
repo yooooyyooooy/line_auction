@@ -36,7 +36,7 @@ export default function Navbar() {
                 <Box  height="70%" display="flex" alignItems="center" marginRight="10%">
                   <img style={{height:"80%"}} src={Coin} alt="coin"/>
                   <Typography style={{fontSize:"1.3rem",marginLeft:"10%"}}>
-                    2000
+                    {informationUserReducer.credit}
                   </Typography>
                 </Box>
                 <Box marginLeft="5%" marginRight="1%">

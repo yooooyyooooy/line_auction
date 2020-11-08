@@ -4,10 +4,16 @@ const initialState = {
   userName: "",
   isAuthenticated: false,
   isError: false,
+  credit:0
 };
 
 const A = (state = initialState, { type, payload }) => {
   switch (type) {
+    case "SET_COIN":
+      return {
+        ...state,
+        credit:payload.credit
+      };
     case "LOGIN_FAILED":
       return {
         ...state,
