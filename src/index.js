@@ -7,9 +7,9 @@ import reportWebVitals from './reportWebVitals';
 //redux
 import { Provider } from "react-redux";
 import store from "./reduxStore"
-// import fetchLiff from "./utils/setAuthorization"
+import fetchLiff from "./utils/setAuthorization"
 
-// fetchLiff();
+fetchLiff();
 
 
 ReactDOM.render(
