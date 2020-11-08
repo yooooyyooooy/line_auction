@@ -1,4 +1,4 @@
-import Reaact from "react";
+import React from "react";
 
 //components
 import colors from "../styles/colors";
@@ -6,15 +6,6 @@ import { Box, Button } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import { isTablet } from "react-device-detect";
 
-const imgStyle = {
-  maxWidth:"100%",
-  width:"100%",
-  height:"100%",
-  objectFit:"cover",
-  top:"0",
-  bottom:"0",
-  margin:"auto"
-}
 
 const headerFontSize = {
   xs: "1.3rem",
@@ -28,7 +19,7 @@ export default function ShopsComponentCard(props) {
   const myFont = isTablet ? headerFontSize.xl : headerFontSize.xs
   return (
     <>
-      <Button onClick={()=>{history.push("/items/20")}} variant="contained" style={{backgroundColor:colors.white,marginBottom:"3%", textAlign : "left"}} fullWidth >
+      <Button onClick={()=>{history.push("/items/10")}} variant="contained" style={{backgroundColor:colors.white,marginBottom:"3%", textAlign : "left"}} fullWidth >
             <Box display="flex" >
                 <Box width= '80%' display="flex" alignItems="center" justifyContent="center" >
                     <Box>

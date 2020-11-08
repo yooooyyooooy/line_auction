@@ -1,7 +1,7 @@
 import React from "react";
 
 //Components
-import { Box, List, ListItem,Typography } from "@material-ui/core";
+import { Box, List,Typography } from "@material-ui/core";
 import RoundPaper from "./RoundPaper";
 import GreenButton from "./GreenButton";
 import ShopTwoIcon from "@material-ui/icons/ShopTwo";
