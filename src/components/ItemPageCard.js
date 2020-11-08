@@ -51,12 +51,11 @@ const detailFontSize = {
 function ItemPageCard(props) {
   const classes = useStyles();
   const history = useHistory();
-  const [intime] = useState(true);
+  const [intime,setInTime] = useState(true);
   const [clicks, setClick] = useState(false);
   const handleClick = (e) => {
     clicks ? setClick(false) : setClick(true);
   };
-
   // const [dataHistory, setDataHistory] = useState("");
   const [mostValue, setMostValue] = useState("0");
   const [description, setDescription] = useState("");
@@ -71,8 +70,14 @@ function ItemPageCard(props) {
             // setDataHistory(snapData.history);
             setMostValue(snapData.mostValue.value);
             setDescription(snapData.description);
+            const end = new Date(snapData.endAt.seconds * 1000)
+            const now = new Date()
+            console.log(end)
+            console.log(now)
+            setInTime(now<end)
           });
       }
+      
     }
     fetch();
     console.log(props.id);
