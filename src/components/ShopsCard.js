@@ -1,11 +1,13 @@
 import React from "react";
 
 //Components
-import { Box, List, Typography } from "@material-ui/core";
+import { Box, List, ListItem,Typography } from "@material-ui/core";
 import RoundPaper from "./RoundPaper";
 import GreenButton from "./GreenButton";
 import ShopTwoIcon from "@material-ui/icons/ShopTwo";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
+import ShopsComponentCard from  "./ShopsComponentCard"
+
 import { makeStyles } from "@material-ui/core/styles";
 import colors from "../styles/colors";
 
@@ -30,7 +32,10 @@ function ShopsCard() {
             <Typography style ={{fontWeight : "bold"}}>SHOPS</Typography>
           </Box>
         </Box>
-        <List></List>
+        <List>
+            <ShopsComponentCard shoptitle = "#112 CP Jewelry" details  = "Jewelry, Accessories"/>
+            <ShopsComponentCard shoptitle = "#113 Nopparut" details  = "Liquor, Drugs"/>
+        </List>
         <GreenButton text="SHOW ALL SHOPS" dest="/shops" icon = {<NavigateNextIcon/>} />
       </RoundPaper>
     </Box>

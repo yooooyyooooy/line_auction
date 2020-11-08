@@ -49,7 +49,7 @@ const detailFontSize = {
 function ItemPageCard(props) {
   const classes = useStyles();
   const history = useHistory();
-  const [intime] = useState(false);
+  const [intime] = useState(true);
   const [clicks, setClick] = useState(false);
   const handleClick = (e) => {
     clicks ? setClick(false) : setClick(true);
