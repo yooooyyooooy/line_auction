@@ -3,7 +3,7 @@ import * as informationUserAction from "../actions/InformationUser.action";
 import store from "../reduxStore";
 
 async function FetchLiff() {
-  await liff.init({ liffId: "1655212261-6MZkRkz3" });
+  await liff.init({ liffId: "1655206384-XQoOgdqp" });
   liff.ready.then(() => {
     if (liff.isLoggedIn()) {
       liff.getProfile().then((profile) => {

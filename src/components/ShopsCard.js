@@ -6,7 +6,7 @@ import RoundPaper from "./RoundPaper";
 import GreenButton from "./GreenButton";
 import ShopTwoIcon from "@material-ui/icons/ShopTwo";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
-import ShopsComponentCard from  "./ShopsComponentCard"
+// import ShopsComponentCard from  "./ShopsComponentCard"
 
 import { makeStyles } from "@material-ui/core/styles";
 import colors from "../styles/colors";
@@ -56,7 +56,7 @@ function ShopsCard({data}) {
           </Box>
         </Box>
         <List>
-// <<<<<<< addSomeApi
+
         {shops &&
               shops.map((e, index) => {
                 return (
@@ -69,10 +69,7 @@ function ShopsCard({data}) {
                   <li>{e}</li>
                 );
               })}
-// =======
-//             <ShopsComponentCard shoptitle = "#112 CP Jewelry" details  = "Jewelry, Accessories"/>
-//             <ShopsComponentCard shoptitle = "#113 Nopparut" details  = "Liquor, Drugs"/>
-// >>>>>>> dev
+
         </List>
         <GreenButton text="SHOW ALL SHOPS" dest="/shops" icon = {<NavigateNextIcon/>} />
       </RoundPaper>
