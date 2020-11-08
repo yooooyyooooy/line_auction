@@ -23,10 +23,6 @@ const headerFontSize = {
   xl: "2.3rem",
 };
 
-
-
-
-
 export default function ItemCard(props) {
 
   const history = useHistory();
