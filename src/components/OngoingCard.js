@@ -64,7 +64,8 @@ function OngoingCard({ data }) {
                     key={index}
                     title={e.title}
                     id={e.ID}
-                    time="เหลือเวลาอีก 20 นาที"
+                    endAt={e.endAt}
+                    startAT={e.startAt}
                   />
                 );
               })}
