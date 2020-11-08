@@ -49,7 +49,7 @@ const detailFontSize = {
 function ItemPageCard(props) {
   const classes = useStyles();
   const history = useHistory();
-  const [intime] = useState(false);
+  const [intime] = useState(true);
   const [clicks, setClick] = useState(false);
   const handleClick = (e) => {
     clicks ? setClick(false) : setClick(true);
@@ -99,7 +99,7 @@ function ItemPageCard(props) {
         </Box>
         <Box align="center" marginTop="10%">
           {intime ? (
-            <Typography variant="subtitle1">ราคาประมูลปัจจุบัน</Typography>
+            <Typography variant="subtitle1">ปัจจุบันมีเหรียญ 79 เหรียญ</Typography>
           ) : (
             <Typography variant="subtitle1">สิ้นสุดการประมูลที่</Typography>
           )}
