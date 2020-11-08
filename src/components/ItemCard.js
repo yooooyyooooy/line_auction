@@ -24,7 +24,6 @@ const headerFontSize = {
 };
 
 export default function ItemCard(props) {
-
   const history = useHistory();
   const myFont = isTablet ? headerFontSize.xl : headerFontSize.xs;
   return (
