@@ -40,6 +40,7 @@ export default function GreenButton(props) {
         width: "100%",
         color: "white",
         height: "200%",
+        fontWeight: "bold"
       }}
       endIcon={props.icon}
     >

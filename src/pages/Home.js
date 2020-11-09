@@ -79,7 +79,7 @@ export default function Home() {
           <Typography
             style={{ fontSize: headerFontSize.xs, color: colors.white }}
           >
-            WELCOME BACK !
+            WELCOME BACK 
           </Typography>
         </Box>
         <Box style={{ marginTop: "2%", marginLeft: "15%" }}>

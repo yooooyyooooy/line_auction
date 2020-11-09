@@ -12,6 +12,7 @@ const colors = {
   darkBlue : "#14274E" ,
   blue : "#394867" ,
   darkPink: "#D46C86",
+  lightGray: "E4E4E4",
   grey: "#C4C4C4",
   darkGrey : "#808080",
   white : "#F2F2F2" ,
