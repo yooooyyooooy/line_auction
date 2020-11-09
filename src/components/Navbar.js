@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback} from "react";
 import { AppBar, Toolbar, Avatar,Box,Typography } from "@material-ui/core";
 import colors from "../styles/colors.js";
 import GavelIcon from "@material-ui/icons/Gavel";
@@ -29,7 +29,7 @@ export default function Navbar() {
             <Box width="100%" display="flex">
               <Box width="50%" >
                 <span onClick={homeHandle}>
-                  <GavelIcon fontSize="large" />
+                  <GavelIcon fontSize="large"/>
                 </span>
               </Box>
               <Box width="50%" display="flex" alignItems="center" justifyContent="flex-end">
