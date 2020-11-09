@@ -3,17 +3,27 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./components/App";
 import reportWebVitals from "./reportWebVitals";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 
 //redux
 import { Provider } from "react-redux";
 import store from "./reduxStore";
 import fetchLiff from "./utils/setAuthorization";
 
+const fontTheme = createMuiTheme({
+  typography: {
+    fontFamily: "Prompt",
+  },
+  
+});
+
 (async () => await fetchLiff())();
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <ThemeProvider theme={fontTheme}>
+      <App />
+    </ThemeProvider>
   </Provider>,
   document.getElementById("root")
 );
