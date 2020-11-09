@@ -6,7 +6,7 @@ import RoundPaper from "./RoundPaper";
 import NavButton from "./NavButton";
 import ShopTwoIcon from "@material-ui/icons/ShopTwo";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
-
+import ShopsComponentCard from "./ShopsComponentCard"
 
 import { makeStyles } from "@material-ui/core/styles";
 import colors from "../styles/colors";
@@ -27,13 +27,14 @@ function ShopsCard({data}) {
   useEffect(() => {
     setShops([]);
     if (data && data !== "") {
+      console.log(data);
       let v = [];
       firestore
-        .collection("items")
+        .collection("stores")
         .get()
         .then(function(snapshot){
-          console.log("hooo");
           snapshot.forEach(function (doc) {
+            
             if (data.includes(doc.id)) {
               let x = doc.data();
               x.ID = doc.id;
@@ -60,13 +61,13 @@ function ShopsCard({data}) {
         {shops &&
               shops.map((e, index) => {
                 return (
-                  // <shoppa
-                  //   key={index}
-                  //   title={e.title}
-                  //   id={e.ID}
-                  //   time="เหลือเวลาอีก 20 นาที"
-                  // />
-                  <li>{e}</li>
+                  <ShopsComponentCard
+                    key={index}
+                    shoptitle={e.title}
+                    details={e.category}
+                    id={e.ID}
+                    time="เหลือเวลาอีก 20 นาที"
+                  />
                 );
               })}
 
