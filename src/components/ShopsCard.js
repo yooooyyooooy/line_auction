@@ -3,10 +3,10 @@ import React,{useState,useEffect} from "react";
 //Components
 import { Box, List,Typography } from "@material-ui/core";
 import RoundPaper from "./RoundPaper";
-import GreenButton from "./GreenButton";
+import NavButton from "./NavButton";
 import ShopTwoIcon from "@material-ui/icons/ShopTwo";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
-// import ShopsComponentCard from  "./ShopsComponentCard"
+
 
 import { makeStyles } from "@material-ui/core/styles";
 import colors from "../styles/colors";
@@ -71,7 +71,7 @@ function ShopsCard({data}) {
               })}
 
         </List>
-        <GreenButton text="SHOW ALL SHOPS" dest="/shops" icon = {<NavigateNextIcon/>} />
+        <NavButton text="SHOW ALL SHOPS" dest="/shops" icon = {<NavigateNextIcon/>} />
       </RoundPaper>
     </Box>
   );

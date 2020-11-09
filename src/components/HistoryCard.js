@@ -3,7 +3,7 @@ import React, { useState,useEffect } from "react";
 //Components
 import { Box, List, Typography } from "@material-ui/core";
 import RoundPaper from "./RoundPaper";
-import GreenButton from "./GreenButton";
+import NavButton from "./NavButton";
 import ReplayIcon from "@material-ui/icons/Replay";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import { makeStyles } from "@material-ui/core/styles";
@@ -69,7 +69,7 @@ function HistoryCard({data}) {
               })}
           </List>
         </Box>
-        <GreenButton text="SHOW ALL HISTORY" dest="/history" icon = {<NavigateNextIcon/>}/>
+        <NavButton text="SHOW ALL HISTORY" dest="/history" icon = {<NavigateNextIcon/>}/>
       </RoundPaper>
     </Box>
   );

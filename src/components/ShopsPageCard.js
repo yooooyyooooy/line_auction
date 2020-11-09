@@ -6,7 +6,7 @@ import RoundPaper from "./RoundPaper";
 import ShopTwoIcon from "@material-ui/icons/ShopTwo";
 import BackButton from "../components/BackButton";
 import AddIcon from "@material-ui/icons/Add";
-import GreenButton from "../components/GreenButton";
+import NavButton from "./NavButton";
 import { makeStyles } from "@material-ui/core/styles";
 import colors from "../styles/colors";
 import { useHistory } from "react-router-dom";
@@ -56,7 +56,7 @@ function ShopsPageCard() {
           </Box>
         </Box>
         <Box marginY="4%">
-          <GreenButton
+          <NavButton
             text="ADD MORE SHOP"
             icon={<AddIcon />}
             dest="/addshops"
