@@ -18,20 +18,6 @@ export default function GreenButton(props) {
   );
   const myFont = isTablet ? headerFontSize.md : "1rem";
   async function send() {
-    //   const requestOptions = {
-    //     method: "PUT",
-    //     headers: { "Content-Type": "application/json" },
-    //     body: {
-    //       userId: informationUserReducer.userId,
-    //       username: informationUserReducer.userName,
-    //     },
-    //   };
-    //   fetch(
-    //     `https://asia-east2-line-auction-backend.cloudfunctions.net/item/${props.id}`,
-    //     requestOptions
-    //   )
-    //     .then((response) => console.log(response))
-    //     .catch((error) => console.log(error));
     try {
       const res = await axios.put(
         `https://asia-east2-line-auction-backend.cloudfunctions.net/item/${props.id}`,
