@@ -136,6 +136,8 @@ function ItemPageCard(props) {
                 background: colors.yellow,
                 color: colors.darkGrey,
                 display: "flex",
+                borderRadius:"5px",
+                padding:"1%"
               }}
             >
               <Box marginRight="3%">
@@ -164,12 +166,13 @@ function ItemPageCard(props) {
             </Typography>
           </Box>
         </Box>
-        <hr color={colors.lightGrey} />
-        <Box align="center" marginTop="10%">
+        
+        <Box align="center" marginTop="5%">
+          <hr color={colors.lightGrey} />
           {intime ? (
             <>
               <Typography variant="subtitle1">
-                ปัจจุบันมีเหรียญ {mostValue / lower} เหรียญ
+                ปัจจุบันมีการประมูลทั้งหมด {mostValue / lower} ครั้ง
               </Typography>
               <Typography
                 variant="subtitle2"
@@ -192,17 +195,17 @@ function ItemPageCard(props) {
             </>
           )}
 
-          <Typography variant="h3" style={{ fontWeight: "bold" }}>
+          <Typography variant="h3" style={{marginTop:"3%", fontWeight: "bold" }}>
             {mostValue} บาท
           </Typography>
           <hr color={colors.lightGrey} />
         </Box>
 
-        <Box marginY="6%" alignItems="center">
+        <Box marginY="6%" alignItems="center" width="90%" marginX="auto">
           {intime ? (
             <>
-              <Box display="flex" justifyContent="space-between">
-                <Box width="70%" height="50%">
+              <Box display="flex">
+                <Box width="65%" height="50%">
                   <GreenButton
                     text="ลงเหรียญ"
                     icon={<NavigateNextIcon />}
@@ -210,11 +213,8 @@ function ItemPageCard(props) {
                     type={"RUNNING"}
                   />
                 </Box>
-                <Box display="flex">
-                  <img src={Coins} alt={Coins} />
-                  <Box marginTop="5%">
-                    <Typography variant="h5">{lower}</Typography>
-                  </Box>
+                <Box display="flex" justifyContent="flex-end" alignItems="center" width="35%">
+                  <img src={Coins} alt={Coins} /> <Typography variant="h5" style={{marginLeft:"5%"}}>{lower}</Typography>
                 </Box>
               </Box>
             </>
@@ -245,41 +245,49 @@ function ItemPageCard(props) {
       <Box marginY="8%">
         <RoundPaper style={{ width: "80%", margin: "auto" }}>
           <Box display="flex" justifyContent="flex-end">
-            <Typography variant="h5">ประวัติการประมูล</Typography>
+            <Typography variant="h5" style={{marginRight:"5%"}}>ประวัติการประมูล</Typography>
           </Box>
           <hr color={colors.lightGrey} />
-          <Box>
-            {dataHistory.map((e, index) => {
+          <Box width="100%" style={{marginLeft:"5%"}}>
+            {dataHistory.length !== 0 ?
+            dataHistory.map((e, index) => {
               return (
                 <Box marginTop="5px" key={index}>
                   {index === 0 ? (
                     <Box
                       display="flex"
+                      marginTop="1%"
                       fontSize="1.2rem"
                       style={{ color: "#549378" }}
                     >
-                      เหรียญที่ {mostValue / lower - index} : {e.username}
+                      ราคาที่ลง {(mostValue / lower - index)*lower} : {e.username}
                     </Box>
                   ) : informationUserReducer.userId === e.userId ? (
                     <Box
                       display="flex"
+                      marginTop="1%"
                       fontSize="1.2rem"
                       style={{ color: "#394867" }}
                     >
-                      เหรียญที่ {mostValue / lower - index} : {e.username}
+                      ราคาที่ลง {(mostValue / lower - index)*lower} : {e.username}
                     </Box>
                   ) : (
                     <Box
                       display="flex"
+                      marginTop="1%"
                       fontSize="1.2rem"
                       style={{ color: "#BDBDBD" }}
                     >
-                      เหรียญที่ {mostValue / lower - index} : {e.username}
+                      ราคาที่ลง {(mostValue / lower - index)*lower} : {e.username}
                     </Box>
                   )}
                 </Box>
               );
-            })}
+            }):
+              <Box display="flex" width="100%" height="70px" alignItems="center" justifyContent="center" style={{color:colors.grey}}>
+                ปัจจุบันยังไม่มีการประมูลเกิดขึ้น
+              </Box>
+            }
           </Box>
         </RoundPaper>
       </Box>
