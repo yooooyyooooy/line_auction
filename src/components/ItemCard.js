@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 
 import colors from "../styles/colors";
 import { Box, Button } from "@material-ui/core";
@@ -26,36 +26,41 @@ const headerFontSize = {
 
 export default function ItemCard(props) {
   const history = useHistory();
-  const [active,setActive] = useState(false) ;
-  const [time,setTime] = useState(0);
+  const [active, setActive] = useState(false);
+  const [time, setTime] = useState(0);
   const myFont = isTablet ? headerFontSize.xl : headerFontSize.xs;
   useEffect(() => {
+    let unmounted = false;
     function fetch() {
       if (props.id && props.id !== undefined) {
         firestore
           .collection("items")
           .doc(props.id)
           .onSnapshot((snapshot) => {
-            const snapData = snapshot.data();
-            // setDataHistory(snapData.history);
-            const end = new Date(snapData.endAt.seconds * 1000)
-            const now = new Date()
-            const start =  new Date(snapData.startAt.seconds * 1000)
-            if (start <= now && now < end) {
-              setActive(true)
-              setTime(Math.floor((end-now)/60000))
-            }
-            else if (start > now) {
-              setActive(false)
-              setTime(Math.floor((start-now)/60000))
-            }else {
-              setActive(false)
-              setTime(-1)
+            if (!unmounted) {
+              const snapData = snapshot.data();
+              // setDataHistory(snapData.history);
+              const end = new Date(snapData.endAt.seconds * 1000);
+              const now = new Date();
+              const start = new Date(snapData.startAt.seconds * 1000);
+              if (start <= now && now < end) {
+                setActive(true);
+                setTime(Math.floor((end - now) / 60000));
+              } else if (start > now) {
+                setActive(false);
+                setTime(Math.floor((start - now) / 60000));
+              } else {
+                setActive(false);
+                setTime(-1);
+              }
             }
           });
       }
     }
     fetch();
+    return () => {
+      unmounted = true;
+    };
   }, [props.id]);
   return (
     <Button
@@ -64,7 +69,7 @@ export default function ItemCard(props) {
       }}
       variant="contained"
       style={{
-        backgroundColor: active ? colors.yellow : colors.grey ,
+        backgroundColor: active ? colors.yellow : colors.grey,
         marginBottom: "3%",
         width: "100%",
       }}
@@ -97,7 +102,11 @@ export default function ItemCard(props) {
               style={{ color: "#808080", justifyContent: "space-between" }}
               paddingX="2%"
             >
-              {active  ? `เหลือเวลาอีก ${time} นาที` : time < 0 ? 'การประมูลจบแล้ว' : `การประมูลจะเริ่มในอีก ${time} นาที` }
+              {active
+                ? `เหลือเวลาอีก ${time} นาที`
+                : time < 0
+                ? "การประมูลจบแล้ว"
+                : `การประมูลจะเริ่มในอีก ${time} นาที`}
             </Box>
           </Box>
         </Box>
