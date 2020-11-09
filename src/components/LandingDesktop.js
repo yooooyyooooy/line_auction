@@ -54,7 +54,7 @@ export default function LandingDesktop() {
                 >
                   เข้าสู่ระบบ
                 </Button>
-                <YellowButton>สมัครสมาชิก</YellowButton>
+                <YellowButton text = "สมัครสมาชิก"></YellowButton>
               </Box>
             </Box>
           </Box>
