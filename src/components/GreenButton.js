@@ -18,16 +18,39 @@ export default function GreenButton(props) {
   );
   const myFont = isTablet ? headerFontSize.md : "1rem";
   async function send() {
-    const res = await axios.put(
-      `https://asia-east2-line-auction-backend.cloudfunctions.net/item/${props.id}`,
-      {
-        userId: informationUserReducer.userId,
-        username: informationUserReducer.userName,
-        // userId:"U4926644b51833230d9fe6299bb8ede28",
-        // username:"PLEUM"
-      }
-    );
-    console.log(res);
+    //   const requestOptions = {
+    //     method: "PUT",
+    //     headers: { "Content-Type": "application/json" },
+    //     body: {
+    //       userId: informationUserReducer.userId,
+    //       username: informationUserReducer.userName,
+    //     },
+    //   };
+    //   fetch(
+    //     `https://asia-east2-line-auction-backend.cloudfunctions.net/item/${props.id}`,
+    //     requestOptions
+    //   )
+    //     .then((response) => console.log(response))
+    //     .catch((error) => console.log(error));
+    try {
+      const res = await axios.put(
+        `https://asia-east2-line-auction-backend.cloudfunctions.net/item/${props.id}`,
+        {
+          userId: informationUserReducer.userId,
+          username: informationUserReducer.userName,
+          // userId:"U4926644b51833230d9fe6299bb8ede28",
+          // username:"PLEUM"
+        },
+        {
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+          },
+        }
+      );
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
   }
   function pay() {
     // liff.closeWindow()
@@ -40,7 +63,7 @@ export default function GreenButton(props) {
         width: "100%",
         color: "white",
         height: "200%",
-        fontWeight: "bold"
+        fontWeight: "bold",
       }}
       endIcon={props.icon}
     >

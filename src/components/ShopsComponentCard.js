@@ -3,9 +3,8 @@ import React from "react";
 //components
 import colors from "../styles/colors";
 import { Box, Button } from "@material-ui/core";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import { isTablet } from "react-device-detect";
-
 
 const headerFontSize = {
   xs: "1.3rem",
@@ -15,24 +14,61 @@ const headerFontSize = {
 };
 
 export default function ShopsComponentCard(props) {
-  const history = useHistory();
-  const myFont = isTablet ? headerFontSize.xl : headerFontSize.xs
+  // const history = useHistory();
+  const myFont = isTablet ? headerFontSize.xl : headerFontSize.xs;
   return (
     <>
-      <Button onClick={()=>{history.push("/items/10")}} variant="contained" style={{backgroundColor:colors.white,marginBottom:"3%", textAlign : "left"}} fullWidth >
-            <Box display="flex" >
-                <Box width= '80%' display="flex" alignItems="center" justifyContent="center" >
-                    <Box>
-                        <Box style={{overflow:"hidden",whiteSpace:"nowrap",textOverflow:"ellipsis",width:"60vw",fontSize:myFont,color:'#2A282A'}}>
-                            {props.shoptitle}
-                        </Box>
-                        <Box style={{overflow:"hidden",whiteSpace:"nowrap",textOverflow:"ellipsis",width:"60vw",fontSize:myFont,color:'#808080'}}>
-                            {props.details}
-                        </Box>
-                    </Box>
-                </Box>
+      <Button
+        onClick={() => {
+          // history.push("/shop/10");
+        }}
+        variant="contained"
+        style={{
+          backgroundColor: colors.white,
+          marginBottom: "3%",
+          textAlign: "left",
+        }}
+        fullWidth
+      >
+        <Box display="flex">
+          <Box
+            width="80%"
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+          >
+            <Box>
+              <Box
+                style={{
+                  overflow: "hidden",
+                  whiteSpace: "nowrap",
+                  textOverflow: "ellipsis",
+                  width: "60vw",
+                  fontSize: myFont,
+                  color: "#2A282A",
+                }}
+              >
+                #{props.id} {props.shoptitle}
+              </Box>
+              <Box
+                style={{
+                  overflow: "hidden",
+                  whiteSpace: "nowrap",
+                  textOverflow: "ellipsis",
+                  width: "60vw",
+                  fontSize: myFont,
+                  color: "#808080",
+                }}
+              >
+                {props.details &&
+                  props.details.map((e, index) => {
+                    return <span key={index}>{e} </span>;
+                  })}
+              </Box>
             </Box>
-        </Button>
+          </Box>
+        </Box>
+      </Button>
     </>
   );
 }
