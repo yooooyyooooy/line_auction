@@ -37,23 +37,28 @@ export default function Home() {
     ({ informationReducer }) => informationReducer
   );
   useEffect(() => {
+    let unmounted = false;
     if (informationUserReducer.userId) {
       firestore
         .collection("users")
         .doc(informationUserReducer.userId)
         .onSnapshot(function (doc) {
+          if (!unmounted) {
             setAllShop(doc.data().favoriteStore);
             setAllFav(doc.data().favoriteItem);
             setAllOnbidding(doc.data().onBidding);
             setAllHistory(doc.data().history);
             store.dispatch(
               informationUserAction.setCredit({
-               credit:doc.data().credits
+                credit: doc.data().credits,
               })
             );
-          })
-        };
-    
+          }
+        });
+    }
+    return () => {
+      unmounted = true;
+    };
   }, [informationUserReducer.userId]);
 
   const shift = isTablet ? "-20vh" : "-80px";
@@ -61,7 +66,7 @@ export default function Home() {
   if (isMobile) {
     return (
       <>
-        <Navbar/>
+        <Navbar />
         <div style={{ position: "relative", height: "100%" }}>
           <img
             style={{
@@ -79,7 +84,7 @@ export default function Home() {
           <Typography
             style={{ fontSize: headerFontSize.xs, color: colors.white }}
           >
-            WELCOME BACK 
+            WELCOME BACK
           </Typography>
         </Box>
         <Box style={{ marginTop: "2%", marginLeft: "15%" }}>

@@ -65,6 +65,7 @@ function ItemPageCard(props) {
     clicks ? setClick(false) : setClick(true);
   };
   const [dataHistory, setDataHistory] = useState([]);
+  const [title, setTitle] = useState("");
   const [mostValue, setMostValue] = useState("0");
   const [description, setDescription] = useState("");
   const [highestBidName, setHighestBidName] = useState("");
@@ -73,30 +74,34 @@ function ItemPageCard(props) {
   const [timeDiff, setTimeDiff] = useState(0);
 
   useEffect(() => {
+    let unmounted = false;
     function fetch() {
       if (props.id && props.id !== undefined) {
         firestore
           .collection("items")
           .doc(props.id)
           .onSnapshot((snapshot) => {
-            const snapData = snapshot.data();
-            setDataHistory(snapData.history.slice(-3).reverse());
-            setMostValue(snapData.mostValue.value);
-            setDescription(snapData.description);
-            setHighestBidName(snapData.mostValue.username);
-            setHighestBidId(snapData.mostValue.userId);
-            setLower(snapData.lower);
-            const end = new Date(snapData.endAt.seconds * 1000);
-            const now = new Date();
-            console.log(end);
-            console.log(now);
-            setInTime(now < end);
-            setTimeDiff(Math.floor((end - now) / 60000));
+            if (!unmounted) {
+              const snapData = snapshot.data();
+              setDataHistory(snapData.history.slice(-3).reverse());
+              setMostValue(snapData.mostValue.value);
+              setDescription(snapData.description);
+              setHighestBidName(snapData.mostValue.username);
+              setHighestBidId(snapData.mostValue.userId);
+              setTitle(snapData.title);
+              setLower(snapData.lower);
+              const end = new Date(snapData.endAt.seconds * 1000);
+              const now = new Date();
+              setInTime(now < end);
+              setTimeDiff(Math.floor((end - now) / 60000));
+            }
           });
       }
     }
     fetch();
-    console.log(props.id);
+    return () => {
+      unmounted = true;
+    };
   }, [props.id]);
 
   return (
@@ -124,7 +129,7 @@ function ItemPageCard(props) {
             </span>
           </Box>
         </Box>
-        <Box marg>
+        <Box>
           {intime ? (
             <Box
               style={{
@@ -150,7 +155,7 @@ function ItemPageCard(props) {
         <Box marginTop="4%">
           <Box>
             <Typography className={classes.heading1} variant="h6">
-              ids : {props.id}
+              {title}
             </Typography>
           </Box>
           <Box>
@@ -206,7 +211,7 @@ function ItemPageCard(props) {
                   />
                 </Box>
                 <Box display="flex">
-                  <img src={Coins} alt ={Coins}/>
+                  <img src={Coins} alt={Coins} />
                   <Box marginTop="5%">
                     <Typography variant="h5">{lower}</Typography>
                   </Box>
@@ -246,7 +251,7 @@ function ItemPageCard(props) {
           <Box>
             {dataHistory.map((e, index) => {
               return (
-                <Box marginTop="5px">
+                <Box marginTop="5px" key={index}>
                   {index === 0 ? (
                     <Box
                       display="flex"
