@@ -1,11 +1,27 @@
+/* prompt-regular - thai_latin */
+@font-face {
+  font-family: 'Prompt';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./fonts/PROMPT/prompt-v4-thai_latin-regular.eot'); /* IE9 Compat Modes */
+  src: local('Prompt'), local('Prompt-Regular'),
+       url('./fonts/PROMPT/prompt-v4-thai_latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('./fonts/PROMPT/prompt-v4-thai_latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('./fonts/PROMPT/prompt-v4-thai_latin-regular.woff') format('woff'), /* Modern Browsers */
+       url('./fonts/PROMPT/prompt-v4-thai_latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('./fonts/PROMPT/prompt-v4-thai_latin-regular.svg#Prompt') format('svg'); /* Legacy iOS */
+}
+
 body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-* {
-  font-family: 'Prompt', sans-serif;
+*,html,body {
+  font-family: "Prompt";
 }
+
+
 
 
