@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 //Components
 import { Box, List, Typography } from "@material-ui/core";
 import RoundPaper from "./RoundPaper";
-import GreenButton from "./GreenButton";
+import NavButton from "./NavButton";
 import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 
@@ -71,11 +71,10 @@ function OngoingCard({ data }) {
               })}
           </List>
         </Box>
-        <GreenButton
+        <NavButton
           text="SHOW ALL ON-GOING"
           dest="/ongoing"
           icon={<NavigateNextIcon 
-          type="RUNNING"
         />}
         />
       </RoundPaper>

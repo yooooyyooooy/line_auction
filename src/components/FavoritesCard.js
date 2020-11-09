@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 //Components
 import { Box, List, Typography } from "@material-ui/core";
 import RoundPaper from "./RoundPaper";
-import GreenButton from "./GreenButton";
+import NavButton from "./NavButton";
 import StarIcon from "@material-ui/icons/Star";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import ItemCard from "./ItemCard";
@@ -70,7 +70,7 @@ function FavoritesCard({ data }) {
               })}
           </List>
         </Box>
-        <GreenButton
+        <NavButton
           text="SHOW ALL FAVOURITES"
           dest="/favorites"
           icon={<NavigateNextIcon />}
