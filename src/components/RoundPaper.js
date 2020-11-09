@@ -2,8 +2,8 @@ import { Paper, styled } from "@material-ui/core";
 
 const RoundPaper = styled(Paper)({
   padding: 12,
-  borderRadius: 12,
-  boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+  borderRadius: 8,
+  boxShadow: "1px 1px 15px rgba(0, 0, 0, 0.15)",
   
 });
 
