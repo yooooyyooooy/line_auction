@@ -56,9 +56,7 @@ export default function ItemCard(props) {
       }
     }
     fetch();
-    console.log(props.id);
   }, [props.id]);
-  console.log(active,props.id)
   return (
     <Button
       onClick={() => {
