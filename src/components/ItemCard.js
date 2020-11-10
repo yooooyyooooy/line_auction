@@ -128,6 +128,7 @@ export default function ItemCard(props) {
                   </Box>
                 </Box>
               )}
+              {/* {props.mostValue ? :`${props.mostValue}`} */}
             </Box>
           </Box>
         </Box>

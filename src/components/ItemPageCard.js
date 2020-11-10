@@ -20,6 +20,7 @@ import colors from "../styles/colors";
 import { useHistory } from "react-router-dom";
 
 import { firestore } from "../utils/setFirebase";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   headers: {
@@ -57,6 +58,7 @@ function ItemPageCard(props) {
   const informationUserReducer = useSelector(
     ({ informationReducer }) => informationReducer
   );
+  const [errors, setErrors] = useState("");
   const classes = useStyles();
   const history = useHistory();
   const [intime, setInTime] = useState();
@@ -64,6 +66,9 @@ function ItemPageCard(props) {
   const handleClick = (e) => {
     clicks ? setClick(false) : setClick(true);
   };
+  const [disable, setDisable] = useState(false);
+  const [end, setEnd] = useState(null);
+  const [status, setStatus] = useState(0);
   const [dataHistory, setDataHistory] = useState([]);
   const [title, setTitle] = useState("");
   const [mostValue, setMostValue] = useState("0");
@@ -90,10 +95,21 @@ function ItemPageCard(props) {
               setHighestBidId(snapData.mostValue.userId);
               setTitle(snapData.title);
               setLower(snapData.lower);
+              setStatus(snapData.status);
               const end = new Date(snapData.endAt.seconds * 1000);
+              setEnd(end);
               const now = new Date();
               setInTime(now < end);
               setTimeDiff(Math.floor((end - now) / 60000));
+              if (snapData.status !== 0) {
+                if (
+                  informationUserReducer.userId === snapData.mostValue.userId
+                ) {
+                  setDisable(false);
+                } else {
+                  setDisable(true);
+                }
+              }
             }
           });
       }
@@ -102,7 +118,37 @@ function ItemPageCard(props) {
     return () => {
       unmounted = true;
     };
-  }, [props.id]);
+  }, [props.id, informationUserReducer.userId]);
+  const handle = () => {
+    const now = new Date();
+    if (now < end) {
+      async function send() {
+        try {
+          const res = await axios.put(
+            `https://asia-east2-line-auction-backend.cloudfunctions.net/item/${props.id}`,
+            {
+              userId: informationUserReducer.userId,
+              username: informationUserReducer.userName,
+              // userId:"U4926644b51833230d9fe6299bb8ede28",
+              // username:"PLEUM"
+            },
+            {
+              headers: {
+                "Access-Control-Allow-Origin": "*",
+              },
+            }
+          );
+          console.log(res);
+        } catch (error) {
+          console.log(error);
+          setErrors("error from request");
+        }
+      }
+      send();
+    } else {
+      setErrors("time is up");
+    }
+  };
 
   return (
     <Box marginTop="5%">
@@ -212,7 +258,7 @@ function ItemPageCard(props) {
                     text="ลงเหรียญ"
                     icon={<NavigateNextIcon />}
                     id={props.id}
-                    type={"RUNNING"}
+                    handle={handle}
                   />
                 </Box>
                 <Box
@@ -233,10 +279,12 @@ function ItemPageCard(props) {
               <YellowButton
                 text="โอนเงินผ่าน LINE PAY"
                 icon={<ArrowUpwardIcon />}
+                disable={disable}
               />
             </Box>
           )}
         </Box>
+        <Box>{errors}</Box>
       </RoundPaper>
 
       {/* end state  -> need to fetch some api*/}
@@ -246,8 +294,12 @@ function ItemPageCard(props) {
             <Box display="flex" justifyContent="flex-end">
               <Typography variant="h5">สถานะหลังประมูล</Typography>
             </Box>
-            <hr color={colors.lightGrey} borderradius="4" />
-            <Box></Box>
+            <hr color={colors.lightGrey} borderradius="4"></hr>
+            <Box>
+              {status === 1 ? "รอการชำระเงิน" : ""}
+              {status === 2 ? "สินค้าอยู่ระหว่างการขนส่ง" : ""}
+              {status === 3 ? "สินค้าถึงที่หมายเรียบร้อย" : ""}
+            </Box>
           </RoundPaper>
         </Box>
       ) : null}
