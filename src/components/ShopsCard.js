@@ -1,17 +1,16 @@
-import React,{useState,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 
 //Components
-import { Box, List,Typography } from "@material-ui/core";
+import { Box, List, Typography } from "@material-ui/core";
 import RoundPaper from "./RoundPaper";
 import NavButton from "./NavButton";
 import ShopTwoIcon from "@material-ui/icons/ShopTwo";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
-import ShopsComponentCard from "./ShopsComponentCard"
+import ShopsComponentCard from "./ShopsComponentCard";
 
 import { makeStyles } from "@material-ui/core/styles";
 import colors from "../styles/colors";
 import { firestore } from "../utils/setFirebase";
-
 
 const useStyles = makeStyles((theme) => ({
   headers: {
@@ -21,29 +20,33 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function ShopsCard({data}) {
+function ShopsCard({ data }) {
   const classes = useStyles();
-  const [shops, setShops] = useState([])
+  const [shops, setShops] = useState([]);
   useEffect(() => {
+    let unmounted = false;
     setShops([]);
     if (data && data !== "") {
-      console.log(data);
       let v = [];
       firestore
         .collection("stores")
         .get()
-        .then(function(snapshot){
+        .then(function (snapshot) {
           snapshot.forEach(function (doc) {
-            
-            if (data.includes(doc.id)) {
-              let x = doc.data();
-              x.ID = doc.id;
-              v.push(x);
+            if (!unmounted) {
+              if (data.includes(doc.id)) {
+                let x = doc.data();
+                x.ID = doc.id;
+                v.push(x);
+              }
             }
           });
           setShops(v);
         });
     }
+    return () => {
+      unmounted = true;
+    };
   }, [data]);
   return (
     <Box marginTop="5%">
@@ -53,26 +56,28 @@ function ShopsCard({data}) {
             <ShopTwoIcon fontSize="small" />
           </Box>
           <Box>
-            <Typography style ={{fontWeight : "bold"}}>SHOPS</Typography>
+            <Typography style={{ fontWeight: "bold" }}>SHOPS</Typography>
           </Box>
         </Box>
         <List>
-
-        {shops &&
-              shops.map((e, index) => {
-                return (
-                  <ShopsComponentCard
-                    key={index}
-                    shoptitle={e.title}
-                    details={e.category}
-                    id={e.ID}
-                    time="เหลือเวลาอีก 20 นาที"
-                  />
-                );
-              })}
-
+          {shops &&
+            shops.map((e, index) => {
+              return (
+                <ShopsComponentCard
+                  key={index}
+                  shoptitle={e.title}
+                  details={e.category}
+                  id={e.ID}
+                  time="เหลือเวลาอีก 20 นาที"
+                />
+              );
+            })}
         </List>
-        <NavButton text="SHOW ALL SHOPS" dest="/shops" icon = {<NavigateNextIcon/>} />
+        <NavButton
+          text="SHOW ALL SHOPS"
+          dest="/shops"
+          icon={<NavigateNextIcon />}
+        />
       </RoundPaper>
     </Box>
   );

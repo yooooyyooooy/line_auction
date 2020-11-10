@@ -139,7 +139,7 @@ function ItemPageCard(props) {
                 background: colors.yellow,
                 color: colors.darkGrey,
                 display: "flex",
-                borderRadius:"5px",
+                borderradius:"5px",
                 padding:"1%"
               }}
             >
@@ -171,7 +171,7 @@ function ItemPageCard(props) {
         </Box>
         
         <Box align="center" marginTop="5%">
-          <hr color={colors.lightGrey} borderRadius = "4"/>
+          <hr color={colors.lightGrey} borderradius = "4"/>
           {intime ? (
             <>
               <Typography variant="subtitle1">
@@ -201,7 +201,7 @@ function ItemPageCard(props) {
           <Typography variant="h3" style={{marginTop:"3%", fontWeight: "bold" }}>
             {mostValue} บาท
           </Typography>
-          <hr color={colors.lightGrey } borderRadius = "4" />
+          <hr color={colors.lightGrey } borderradius = "4" />
         </Box>
 
         <Box marginY="6%" alignItems="center" width="90%" marginX="auto">
@@ -239,7 +239,7 @@ function ItemPageCard(props) {
             <Box display="flex" justifyContent="flex-end">
               <Typography variant="h5">สถานะหลังประมูล</Typography>
             </Box>
-            <hr color={colors.lightGrey} borderRadius = "4" />
+            <hr color={colors.lightGrey} borderradius = "4" />
             <Box></Box>
           </RoundPaper>
         </Box>
@@ -250,7 +250,7 @@ function ItemPageCard(props) {
           <Box display="flex" justifyContent="flex-end">
             <Typography variant="h5" style={{marginRight:"5%"}}>ประวัติการประมูล</Typography>
           </Box>
-          <hr color={colors.lightGrey } borderRadius = "4" />
+          <hr color={colors.lightGrey } borderradius = "4" />
           <Box width="100%" style={{marginLeft:"5%"}}>
             {dataHistory.length !== 0 ?
             dataHistory.map((e, index) => {
