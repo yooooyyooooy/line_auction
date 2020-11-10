@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 //components
 import { Box, IconButton, Typography } from "@material-ui/core";
+import Alert from '@material-ui/lab/Alert';
 import RoundPaper from "./RoundPaper";
 import StarIcon from "@material-ui/icons/Star";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
@@ -58,7 +59,7 @@ function ItemPageCard(props) {
   const informationUserReducer = useSelector(
     ({ informationReducer }) => informationReducer
   );
-  const [errors, setErrors] = useState("");
+  const [errors, setErrors] = useState(false);
   const classes = useStyles();
   const history = useHistory();
   const [intime, setInTime] = useState();
@@ -146,7 +147,7 @@ function ItemPageCard(props) {
       }
       send();
     } else {
-      setErrors("time is up");
+      setErrors(true);
     }
   };
 
@@ -284,7 +285,9 @@ function ItemPageCard(props) {
             </Box>
           )}
         </Box>
-        <Box>{errors}</Box>
+        <Box width="100%">
+          {errors ? <Alert severity="error">การประมูลจบลงแล้วจ้า</Alert> : null}
+        </Box>
       </RoundPaper>
 
       {/* end state  -> need to fetch some api*/}
