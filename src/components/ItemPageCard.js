@@ -182,14 +182,13 @@ function ItemPageCard(props) {
                 background: colors.yellow,
                 color: colors.darkGrey,
                 display: "flex",
+                alignItems: "center",
                 borderradius: "5px",
                 padding: "1%",
               }}
             >
-              <Box marginRight="3%">
-                <TimelapseIcon />
-              </Box>
-              <Box marginTop="1%">
+              <TimelapseIcon fontSize="small" />
+              <Box marginLeft="3%">
                 <Typography variant="subtitle2">
                   เหลือเวลาประมูลอีก {timeDiff} นาที
                 </Typography>

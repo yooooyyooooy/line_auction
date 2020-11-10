@@ -8,7 +8,6 @@ import HistoryCard from "../components/HistoryCard";
 import Navbar from "../components/Navbar";
 import { Box, Typography } from "@material-ui/core";
 import Intersect from "../image/Intersect.svg";
-import LandingDesktop from "../components/LandingDesktop";
 import { useHistory } from "react-router-dom";
 //redux
 import { useSelector } from "react-redux";
@@ -126,10 +125,5 @@ export default function Home() {
       </>
     );
   }
-  return (
-    <>
-      <Navbar />
-      <LandingDesktop />
-    </>
-  );
+  
 }
