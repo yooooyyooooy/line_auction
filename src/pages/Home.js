@@ -9,6 +9,7 @@ import Navbar from "../components/Navbar";
 import { Box, Typography } from "@material-ui/core";
 import Intersect from "../image/Intersect.svg";
 import LandingDesktop from "../components/LandingDesktop";
+import {useHistory} from "react-router-dom"
 //redux
 import { useSelector } from "react-redux";
 import store from "../reduxStore";
@@ -28,7 +29,22 @@ const headerFontSize = {
 
 // will do "makeStyles"
 
+function getParameterByName(name, url = window.location.href) {
+  //eslint-disable-next-line
+  name = name.replace(/[\[\]]/g, '\\$&');
+  var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+      results = regex.exec(url);
+  if (!results) return null;
+  if (!results[2]) return '';
+  return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+
 export default function Home() {
+  const history = useHistory() 
+  if (getParameterByName('item')) {
+    const temp = "/items/" + getParameterByName('item')
+    history.push(temp)
+  }
   const [allShop, setAllShop] = useState([]);
   const [allOnbidding, setAllOnbidding] = useState([]);
   const [allHistory, setAllHistory] = useState([]);
