@@ -1,10 +1,11 @@
-
-  
 import React, { useState, useEffect } from "react";
 
 import colors from "../styles/colors";
 import { Box, Button } from "@material-ui/core";
 import Diamonds from "../image/diamonds.svg";
+import TimelapseIcon from "@material-ui/icons/Timelapse";
+import TimerIcon from "@material-ui/icons/Timer";
+import CheckIcon from "@material-ui/icons/Check";
 import { useHistory } from "react-router-dom";
 import { isTablet } from "react-device-detect";
 import { firestore } from "../utils/setFirebase";
@@ -74,7 +75,7 @@ export default function ItemCard(props) {
         backgroundColor: active ? colors.yellow : colors.grey,
         marginBottom: "3%",
         width: "100%",
-        boxShadow: "1px 1px 2px 1px rgba(0, 0, 0, 0.1)"
+        boxShadow: "1px 1px 2px 1px rgba(0, 0, 0, 0.1)",
       }}
       fullWidth
     >
@@ -105,11 +106,28 @@ export default function ItemCard(props) {
               style={{ color: "#808080", justifyContent: "space-between" }}
               paddingX="2%"
             >
-              {active
-                ? `เหลือเวลาอีก ${time} นาที`
-                : time < 0
-                ? "การประมูลจบแล้ว"
-                : `การประมูลจะเริ่มในอีก ${time} นาที`}
+              {active ? (
+                <Box display="flex" alignItems="center" justifyContent="center">
+                  <TimelapseIcon fontSize="inherit" />
+                  <Box marginLeft="3%" fontSize="0.875rem">
+                    เหลือเวลาอีก {time} นาที
+                  </Box>
+                </Box>
+              ) : time < 0 ? (
+                <Box display="flex" alignItems="center" justifyContent="center">
+                  <CheckIcon fontSize="inherit" />
+                  <Box marginLeft="3%" fontSize="0.875rem">
+                    การประมูลจบแล้ว
+                  </Box>
+                </Box>
+              ) : (
+                <Box display="flex" alignItems="center" justifyContent="center">
+                  <TimerIcon fontSize="inherit" />
+                  <Box marginLeft="3%" fontSize="0.875rem">
+                    การประมูลจะเริ่มในอีก {time} นาที
+                  </Box>
+                </Box>
+              )}
             </Box>
           </Box>
         </Box>
@@ -117,4 +135,3 @@ export default function ItemCard(props) {
     </Button>
   );
 }
-
