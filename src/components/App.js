@@ -8,6 +8,7 @@ import Shops from "../pages/Shops"
 import AddShops from  "../pages/AddShops"
 import Items from "../pages/Items"
 import Login from "../pages/Login"
+import BiddingSelling from "../pages/BiddingSelling";
 
 import {
   BrowserRouter as Router,
@@ -38,6 +39,9 @@ export default function App() {
           <Route path="/items/:id" component = {Items}/>
           <Route path="/login">
             <Login/>
+          </Route>
+          <Route path="/bidding">
+            <BiddingSelling/>
           </Route>
           <Route path="/">
             <Home />
