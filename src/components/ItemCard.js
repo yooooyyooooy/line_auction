@@ -1,5 +1,3 @@
-
-  
 import React, { useState, useEffect } from "react";
 
 import colors from "../styles/colors";
@@ -74,7 +72,7 @@ export default function ItemCard(props) {
         backgroundColor: active ? colors.yellow : colors.grey,
         marginBottom: "3%",
         width: "100%",
-        boxShadow: "1px 1px 2px 1px rgba(0, 0, 0, 0.1)"
+        boxShadow: "1px 1px 2px 1px rgba(0, 0, 0, 0.1)",
       }}
       fullWidth
     >
@@ -105,11 +103,12 @@ export default function ItemCard(props) {
               style={{ color: "#808080", justifyContent: "space-between" }}
               paddingX="2%"
             >
-              {active
+              {active && !props.mostValue
                 ? `เหลือเวลาอีก ${time} นาที`
                 : time < 0
                 ? "การประมูลจบแล้ว"
                 : `การประมูลจะเริ่มในอีก ${time} นาที`}
+              {/* {props.mostValue ? :`${props.mostValue}`} */}
             </Box>
           </Box>
         </Box>
@@ -117,4 +116,3 @@ export default function ItemCard(props) {
     </Button>
   );
 }
-

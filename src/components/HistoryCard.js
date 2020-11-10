@@ -41,6 +41,7 @@ function HistoryCard({ data }) {
               }
             }
           });
+          console.log(v);
           setDataHistory(v);
         });
     }
@@ -67,6 +68,7 @@ function HistoryCard({ data }) {
                   <ItemCard
                     key={index}
                     title={e.title}
+                    mostValue={e.mostValue.value}
                     id={e.ID}
                     time="เหลือเวลาอีก 20 นาที"
                   />

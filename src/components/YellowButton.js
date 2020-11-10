@@ -5,10 +5,13 @@ export default function YelloWButton(props) {
   return (
     <Button
       variant="contained"
-      style={{ backgroundColor: "#FFD439" , fontWeight : "bold"}}
+      style={{
+        backgroundColor: props.disable === false ? "#FFD439" : "",
+        fontWeight: "bold",
+      }}
       endIcon={props.icon}
       fullWidth
-      
+      disabled={props.disable}
     >
       {props.text}
     </Button>

@@ -20,6 +20,7 @@ import colors from "../styles/colors";
 import { useHistory } from "react-router-dom";
 
 import { firestore } from "../utils/setFirebase";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   headers: {
@@ -27,7 +28,6 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "right",
     marginTop: "1%",
-
   },
   pictures: {
     maxWidth: "100%",
@@ -35,12 +35,10 @@ const useStyles = makeStyles((theme) => ({
   heading1: {
     fontWeight: "bold",
     fontSize: headingFontSize,
-
   },
   details: {
     color: colors.darkGrey,
     fontSize: detailFontSize,
-
   },
 }));
 
@@ -60,6 +58,7 @@ function ItemPageCard(props) {
   const informationUserReducer = useSelector(
     ({ informationReducer }) => informationReducer
   );
+  const [errors, setErrors] = useState("");
   const classes = useStyles();
   const history = useHistory();
   const [intime, setInTime] = useState();
@@ -67,6 +66,9 @@ function ItemPageCard(props) {
   const handleClick = (e) => {
     clicks ? setClick(false) : setClick(true);
   };
+  const [disable, setDisable] = useState(false);
+  const [end, setEnd] = useState(null);
+  const [status, setStatus] = useState(0);
   const [dataHistory, setDataHistory] = useState([]);
   const [title, setTitle] = useState("");
   const [mostValue, setMostValue] = useState("0");
@@ -93,10 +95,21 @@ function ItemPageCard(props) {
               setHighestBidId(snapData.mostValue.userId);
               setTitle(snapData.title);
               setLower(snapData.lower);
+              setStatus(snapData.status);
               const end = new Date(snapData.endAt.seconds * 1000);
+              setEnd(end);
               const now = new Date();
               setInTime(now < end);
               setTimeDiff(Math.floor((end - now) / 60000));
+              if (snapData.status !== 0) {
+                if (
+                  informationUserReducer.userId === snapData.mostValue.userId
+                ) {
+                  setDisable(false);
+                } else {
+                  setDisable(true);
+                }
+              }
             }
           });
       }
@@ -105,7 +118,37 @@ function ItemPageCard(props) {
     return () => {
       unmounted = true;
     };
-  }, [props.id]);
+  }, [props.id, informationUserReducer.userId]);
+  const handle = () => {
+    const now = new Date();
+    if (now < end) {
+      async function send() {
+        try {
+          const res = await axios.put(
+            `https://asia-east2-line-auction-backend.cloudfunctions.net/item/${props.id}`,
+            {
+              userId: informationUserReducer.userId,
+              username: informationUserReducer.userName,
+              // userId:"U4926644b51833230d9fe6299bb8ede28",
+              // username:"PLEUM"
+            },
+            {
+              headers: {
+                "Access-Control-Allow-Origin": "*",
+              },
+            }
+          );
+          console.log(res);
+        } catch (error) {
+          console.log(error);
+          setErrors("error from request");
+        }
+      }
+      send();
+    } else {
+      setErrors("time is up");
+    }
+  };
 
   return (
     <Box marginTop="5%">
@@ -139,8 +182,8 @@ function ItemPageCard(props) {
                 background: colors.yellow,
                 color: colors.darkGrey,
                 display: "flex",
-                borderradius:"5px",
-                padding:"1%"
+                borderradius: "5px",
+                padding: "1%",
               }}
             >
               <Box marginRight="3%">
@@ -169,9 +212,9 @@ function ItemPageCard(props) {
             </Typography>
           </Box>
         </Box>
-        
+
         <Box align="center" marginTop="5%">
-          <hr color={colors.lightGrey} borderradius = "4"/>
+          <hr color={colors.lightGrey} borderradius="4" />
           {intime ? (
             <>
               <Typography variant="subtitle1">
@@ -198,10 +241,13 @@ function ItemPageCard(props) {
             </>
           )}
 
-          <Typography variant="h3" style={{marginTop:"3%", fontWeight: "bold" }}>
+          <Typography
+            variant="h3"
+            style={{ marginTop: "3%", fontWeight: "bold" }}
+          >
             {mostValue} บาท
           </Typography>
-          <hr color={colors.lightGrey } borderradius = "4" />
+          <hr color={colors.lightGrey} borderradius="4" />
         </Box>
 
         <Box marginY="6%" alignItems="center" width="90%" marginX="auto">
@@ -213,11 +259,19 @@ function ItemPageCard(props) {
                     text="ลงเหรียญ"
                     icon={<NavigateNextIcon />}
                     id={props.id}
-                    type={"RUNNING"}
+                    handle={handle}
                   />
                 </Box>
-                <Box display="flex" justifyContent="flex-end" alignItems="center" width="35%">
-                  <img src={Coins} alt={Coins} /> <Typography variant="h5" style={{marginLeft:"5%"}}>{lower}</Typography>
+                <Box
+                  display="flex"
+                  justifyContent="flex-end"
+                  alignItems="center"
+                  width="35%"
+                >
+                  <img src={Coins} alt={Coins} />{" "}
+                  <Typography variant="h5" style={{ marginLeft: "5%" }}>
+                    {lower}
+                  </Typography>
                 </Box>
               </Box>
             </>
@@ -226,10 +280,12 @@ function ItemPageCard(props) {
               <YellowButton
                 text="โอนเงินผ่าน LINE PAY"
                 icon={<ArrowUpwardIcon />}
+                disable={disable}
               />
             </Box>
           )}
         </Box>
+        <Box>{errors}</Box>
       </RoundPaper>
 
       {/* end state  -> need to fetch some api*/}
@@ -239,8 +295,12 @@ function ItemPageCard(props) {
             <Box display="flex" justifyContent="flex-end">
               <Typography variant="h5">สถานะหลังประมูล</Typography>
             </Box>
-            <hr color={colors.lightGrey} borderradius = "4" />
-            <Box></Box>
+            <hr color={colors.lightGrey} borderradius="4"></hr>
+            <Box>
+              {status === 1 ? "รอการชำระเงิน" : ""}
+              {status === 2 ? "สินค้าอยู่ระหว่างการขนส่ง" : ""}
+              {status === 3 ? "สินค้าถึงที่หมายเรียบร้อย" : ""}
+            </Box>
           </RoundPaper>
         </Box>
       ) : null}
@@ -248,49 +308,62 @@ function ItemPageCard(props) {
       <Box marginY="8%">
         <RoundPaper style={{ width: "80%", margin: "auto" }}>
           <Box display="flex" justifyContent="flex-end">
-            <Typography variant="h5" style={{marginRight:"5%"}}>ประวัติการประมูล</Typography>
+            <Typography variant="h5" style={{ marginRight: "5%" }}>
+              ประวัติการประมูล
+            </Typography>
           </Box>
-          <hr color={colors.lightGrey } borderradius = "4" />
-          <Box width="100%" style={{marginLeft:"5%"}}>
-            {dataHistory.length !== 0 ?
-            dataHistory.map((e, index) => {
-              return (
-                <Box marginTop="5px" key={index}>
-                  {index === 0 ? (
-                    <Box
-                      display="flex"
-                      marginTop="1%"
-                      fontSize="1.2rem"
-                      style={{ color: "#549378" }}
-                    >
-                      ราคาที่ลง {(mostValue / lower - index)*lower} : {e.username}
-                    </Box>
-                  ) : informationUserReducer.userId === e.userId ? (
-                    <Box
-                      display="flex"
-                      marginTop="1%"
-                      fontSize="1.2rem"
-                      style={{ color: "#394867" }}
-                    >
-                      ราคาที่ลง {(mostValue / lower - index)*lower} : {e.username}
-                    </Box>
-                  ) : (
-                    <Box
-                      display="flex"
-                      marginTop="1%"
-                      fontSize="1.2rem"
-                      style={{ color: "#BDBDBD" }}
-                    >
-                      ราคาที่ลง {(mostValue / lower - index)*lower} : {e.username}
-                    </Box>
-                  )}
-                </Box>
-              );
-            }):
-              <Box display="flex" width="100%" height="70px" alignItems="center" justifyContent="center" style={{color:colors.grey}}>
+          <hr color={colors.lightGrey} borderradius="4" />
+          <Box width="100%" style={{ marginLeft: "5%" }}>
+            {dataHistory.length !== 0 ? (
+              dataHistory.map((e, index) => {
+                return (
+                  <Box marginTop="5px" key={index}>
+                    {index === 0 ? (
+                      <Box
+                        display="flex"
+                        marginTop="1%"
+                        fontSize="1.2rem"
+                        style={{ color: "#549378" }}
+                      >
+                        ราคาที่ลง {(mostValue / lower - index) * lower} :{" "}
+                        {e.username}
+                      </Box>
+                    ) : informationUserReducer.userId === e.userId ? (
+                      <Box
+                        display="flex"
+                        marginTop="1%"
+                        fontSize="1.2rem"
+                        style={{ color: "#394867" }}
+                      >
+                        ราคาที่ลง {(mostValue / lower - index) * lower} :{" "}
+                        {e.username}
+                      </Box>
+                    ) : (
+                      <Box
+                        display="flex"
+                        marginTop="1%"
+                        fontSize="1.2rem"
+                        style={{ color: "#BDBDBD" }}
+                      >
+                        ราคาที่ลง {(mostValue / lower - index) * lower} :{" "}
+                        {e.username}
+                      </Box>
+                    )}
+                  </Box>
+                );
+              })
+            ) : (
+              <Box
+                display="flex"
+                width="100%"
+                height="70px"
+                alignItems="center"
+                justifyContent="center"
+                style={{ color: colors.grey }}
+              >
                 ปัจจุบันยังไม่มีการประมูลเกิดขึ้น
               </Box>
-            }
+            )}
           </Box>
         </RoundPaper>
       </Box>
