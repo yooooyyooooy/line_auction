@@ -2,6 +2,17 @@ import liff from "@line/liff";
 import * as informationUserAction from "../actions/InformationUser.action";
 import store from "../reduxStore";
 import { firestore } from "../utils/setFirebase";
+import axios from "axios";
+
+function getParameterByName(name, url = window.location.href) {
+  //eslint-disable-next-line
+  name = name.replace(/[\[\]]/g, "\\$&");
+  var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+    results = regex.exec(url);
+  if (!results) return null;
+  if (!results[2]) return "";
+  return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
 
 async function FetchLiff() {
   let unmounted = false;
@@ -18,21 +29,40 @@ async function FetchLiff() {
             })
           );
         }
-        firestore
-          .collection("users")
-          .doc(profile.userId)
-          .onSnapshot(function (doc) {
-            if (!unmounted) {
-              store.dispatch(
-                informationUserAction.setCredit({
-                  credit: doc.data().credits,
-                })
-              );
+        axios
+          .post(
+            "https://asia-east2-line-auction-backend.cloudfunctions.net/user",
+            {
+              id: profile.userId,
+              name: profile.displayName,
+              profile: profile.pictureUrl,
+              // U4926644b51833230d9fe6299bb8ede28
             }
+          )
+          .then(() => {
+            firestore
+              .collection("users")
+              .doc(profile.userId)
+              .onSnapshot(function (doc) {
+                if (!unmounted) {
+                  if (doc.data()) {
+                    store.dispatch(
+                      informationUserAction.setCredit({
+                        credit: doc.data().credits,
+                      })
+                    );
+                  }
+                }
+              });
           });
       });
     } else {
-      liff.login();
+      if (getParameterByName("item")) {
+        const temp = "/items/" + getParameterByName("item");
+        liff.login({ redirectUri: temp });
+      } else {
+        liff.login();
+      }
     }
   });
 }

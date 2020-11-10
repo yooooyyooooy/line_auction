@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 //Components
 import { Box, List, Typography } from "@material-ui/core";
@@ -8,10 +8,9 @@ import ReplayIcon from "@material-ui/icons/Replay";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import { makeStyles } from "@material-ui/core/styles";
 import colors from "../styles/colors";
-import ItemCard from "./ItemCard"
+import ItemCard from "./ItemCard";
 
 import { firestore } from "../utils/setFirebase";
-
 
 const useStyles = makeStyles((theme) => ({
   headers: {
@@ -21,27 +20,33 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function HistoryCard({data}) {
+function HistoryCard({ data }) {
   const classes = useStyles();
-  const [dataHistory, setDataHistory] = useState([])
+  const [dataHistory, setDataHistory] = useState([]);
   useEffect(() => {
+    let unmounted = false;
     setDataHistory([]);
     if (data && data !== "") {
       let v = [];
       firestore
         .collection("items")
         .get()
-        .then(function(snapshot){
+        .then(function (snapshot) {
           snapshot.forEach(function (doc) {
-            if (data.includes(doc.id)) {
-              let x = doc.data();
-              x.ID = doc.id;
-              v.push(x);
+            if (!unmounted) {
+              if (data.includes(doc.id)) {
+                let x = doc.data();
+                x.ID = doc.id;
+                v.push(x);
+              }
             }
           });
           setDataHistory(v);
         });
     }
+    return () => {
+      unmounted = true;
+    };
   }, [data]);
   return (
     <Box marginTop="5%">
@@ -51,12 +56,12 @@ function HistoryCard({data}) {
             <ReplayIcon fontSize="small" />
           </Box>
           <Box>
-            <Typography style ={{fontWeight : "bold"}}>HISTORY</Typography>
+            <Typography style={{ fontWeight: "bold" }}>HISTORY</Typography>
           </Box>
         </Box>
-        <Box  marginTop="3%">
+        <Box marginTop="3%">
           <List>
-          {dataHistory &&
+            {dataHistory &&
               dataHistory.map((e, index) => {
                 return (
                   <ItemCard
@@ -69,7 +74,11 @@ function HistoryCard({data}) {
               })}
           </List>
         </Box>
-        <NavButton text="SHOW ALL HISTORY" dest="/history" icon = {<NavigateNextIcon/>}/>
+        <NavButton
+          text="SHOW ALL HISTORY"
+          dest="/history"
+          icon={<NavigateNextIcon />}
+        />
       </RoundPaper>
     </Box>
   );

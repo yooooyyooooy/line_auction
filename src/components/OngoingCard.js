@@ -24,24 +24,29 @@ function OngoingCard({ data }) {
   const classes = useStyles();
   const [allOnbidding, setAllOnbidding] = useState([]);
   useEffect(() => {
+    let unmounted = false;
     setAllOnbidding([]);
     if (data && data !== "") {
       let v = [];
       firestore
         .collection("items")
         .get()
-        .then(function(snapshot){
-          console.log("hooo");
+        .then(function (snapshot) {
           snapshot.forEach(function (doc) {
-            if (data.includes(doc.id)) {
-              let x = doc.data();
-              x.ID = doc.id;
-              v.push(x);
+            if (!unmounted) {
+              if (data.includes(doc.id)) {
+                let x = doc.data();
+                x.ID = doc.id;
+                v.push(x);
+              }
             }
           });
           setAllOnbidding(v);
         });
     }
+    return () => {
+      unmounted = true;
+    };
   }, [data]);
 
   return (
@@ -74,8 +79,7 @@ function OngoingCard({ data }) {
         <NavButton
           text="SHOW ALL ON-GOING"
           dest="/ongoing"
-          icon={<NavigateNextIcon 
-        />}
+          icon={<NavigateNextIcon />}
         />
       </RoundPaper>
     </Box>

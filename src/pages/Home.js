@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import colors from "../styles/colors";
-import FavoritesCard from "../components/FavoritesCard";
+// import FavoritesCard from "../components/FavoritesCard";
 import OngoingCard from "../components/OngoingCard";
 import ShopsCard from "../components/ShopsCard";
 import HistoryCard from "../components/HistoryCard";
@@ -9,7 +9,7 @@ import Navbar from "../components/Navbar";
 import { Box, Typography } from "@material-ui/core";
 import Intersect from "../image/Intersect.svg";
 import LandingDesktop from "../components/LandingDesktop";
-import {useHistory} from "react-router-dom"
+import { useHistory } from "react-router-dom";
 //redux
 import { useSelector } from "react-redux";
 import store from "../reduxStore";
@@ -31,24 +31,24 @@ const headerFontSize = {
 
 function getParameterByName(name, url = window.location.href) {
   //eslint-disable-next-line
-  name = name.replace(/[\[\]]/g, '\\$&');
-  var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-      results = regex.exec(url);
+  name = name.replace(/[\[\]]/g, "\\$&");
+  var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+    results = regex.exec(url);
   if (!results) return null;
-  if (!results[2]) return '';
-  return decodeURIComponent(results[2].replace(/\+/g, ' '));
+  if (!results[2]) return "";
+  return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
 export default function Home() {
-  const history = useHistory() 
-  if (getParameterByName('item')) {
-    const temp = "/items/" + getParameterByName('item')
-    history.push(temp)
+  const history = useHistory();
+  if (getParameterByName("item")) {
+    const temp = "/items/" + getParameterByName("item");
+    history.push(temp);
   }
   const [allShop, setAllShop] = useState([]);
   const [allOnbidding, setAllOnbidding] = useState([]);
   const [allHistory, setAllHistory] = useState([]);
-  const [allFav, setAllFav] = useState([]);
+//   const [allFav, setAllFav] = useState([]);
   const informationUserReducer = useSelector(
     ({ informationReducer }) => informationReducer
   );
@@ -60,15 +60,17 @@ export default function Home() {
         .doc(informationUserReducer.userId)
         .onSnapshot(function (doc) {
           if (!unmounted) {
-            setAllShop(doc.data().favoriteStore);
-            setAllFav(doc.data().favoriteItem);
-            setAllOnbidding(doc.data().onBidding);
-            setAllHistory(doc.data().history);
-            store.dispatch(
-              informationUserAction.setCredit({
-                credit: doc.data().credits,
-              })
-            );
+            if (doc.data()) {
+              setAllShop(doc.data().favoriteStore);
+            //   setAllFav(doc.data().favoriteItem);
+              setAllOnbidding(doc.data().onBidding);
+              setAllHistory(doc.data().history);
+              store.dispatch(
+                informationUserAction.setCredit({
+                  credit: doc.data().credits,
+                })
+              );
+            }
           }
         });
     }
@@ -118,7 +120,7 @@ export default function Home() {
         <Box marginY="2%" marginX="auto">
           <OngoingCard data={allOnbidding} />
           <ShopsCard data={allShop} />
-          <FavoritesCard data={allFav} />
+          {/* <FavoritesCard data={allFav} /> */}
           <HistoryCard data={allHistory} />
         </Box>
       </>
