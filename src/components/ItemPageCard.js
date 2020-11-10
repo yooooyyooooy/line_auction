@@ -27,7 +27,6 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "right",
     marginTop: "1%",
-
   },
   pictures: {
     maxWidth: "100%",
@@ -35,12 +34,10 @@ const useStyles = makeStyles((theme) => ({
   heading1: {
     fontWeight: "bold",
     fontSize: headingFontSize,
-
   },
   details: {
     color: colors.darkGrey,
     fontSize: detailFontSize,
-
   },
 }));
 
@@ -139,14 +136,13 @@ function ItemPageCard(props) {
                 background: colors.yellow,
                 color: colors.darkGrey,
                 display: "flex",
-                borderradius:"5px",
-                padding:"1%"
+                alignItems: "center",
+                borderradius: "5px",
+                padding: "1%",
               }}
             >
-              <Box marginRight="3%">
-                <TimelapseIcon />
-              </Box>
-              <Box marginTop="1%">
+              <TimelapseIcon fontSize="small" />
+              <Box marginLeft="3%">
                 <Typography variant="subtitle2">
                   เหลือเวลาประมูลอีก {timeDiff} นาที
                 </Typography>
@@ -169,9 +165,9 @@ function ItemPageCard(props) {
             </Typography>
           </Box>
         </Box>
-        
+
         <Box align="center" marginTop="5%">
-          <hr color={colors.lightGrey} borderradius = "4"/>
+          <hr color={colors.lightGrey} borderradius="4" />
           {intime ? (
             <>
               <Typography variant="subtitle1">
@@ -198,10 +194,13 @@ function ItemPageCard(props) {
             </>
           )}
 
-          <Typography variant="h3" style={{marginTop:"3%", fontWeight: "bold" }}>
+          <Typography
+            variant="h3"
+            style={{ marginTop: "3%", fontWeight: "bold" }}
+          >
             {mostValue} บาท
           </Typography>
-          <hr color={colors.lightGrey } borderradius = "4" />
+          <hr color={colors.lightGrey} borderradius="4" />
         </Box>
 
         <Box marginY="6%" alignItems="center" width="90%" marginX="auto">
@@ -216,8 +215,16 @@ function ItemPageCard(props) {
                     type={"RUNNING"}
                   />
                 </Box>
-                <Box display="flex" justifyContent="flex-end" alignItems="center" width="35%">
-                  <img src={Coins} alt={Coins} /> <Typography variant="h5" style={{marginLeft:"5%"}}>{lower}</Typography>
+                <Box
+                  display="flex"
+                  justifyContent="flex-end"
+                  alignItems="center"
+                  width="35%"
+                >
+                  <img src={Coins} alt={Coins} />{" "}
+                  <Typography variant="h5" style={{ marginLeft: "5%" }}>
+                    {lower}
+                  </Typography>
                 </Box>
               </Box>
             </>
@@ -239,7 +246,7 @@ function ItemPageCard(props) {
             <Box display="flex" justifyContent="flex-end">
               <Typography variant="h5">สถานะหลังประมูล</Typography>
             </Box>
-            <hr color={colors.lightGrey} borderradius = "4" />
+            <hr color={colors.lightGrey} borderradius="4" />
             <Box></Box>
           </RoundPaper>
         </Box>
@@ -248,49 +255,62 @@ function ItemPageCard(props) {
       <Box marginY="8%">
         <RoundPaper style={{ width: "80%", margin: "auto" }}>
           <Box display="flex" justifyContent="flex-end">
-            <Typography variant="h5" style={{marginRight:"5%"}}>ประวัติการประมูล</Typography>
+            <Typography variant="h5" style={{ marginRight: "5%" }}>
+              ประวัติการประมูล
+            </Typography>
           </Box>
-          <hr color={colors.lightGrey } borderradius = "4" />
-          <Box width="100%" style={{marginLeft:"5%"}}>
-            {dataHistory.length !== 0 ?
-            dataHistory.map((e, index) => {
-              return (
-                <Box marginTop="5px" key={index}>
-                  {index === 0 ? (
-                    <Box
-                      display="flex"
-                      marginTop="1%"
-                      fontSize="1.2rem"
-                      style={{ color: "#549378" }}
-                    >
-                      ราคาที่ลง {(mostValue / lower - index)*lower} : {e.username}
-                    </Box>
-                  ) : informationUserReducer.userId === e.userId ? (
-                    <Box
-                      display="flex"
-                      marginTop="1%"
-                      fontSize="1.2rem"
-                      style={{ color: "#394867" }}
-                    >
-                      ราคาที่ลง {(mostValue / lower - index)*lower} : {e.username}
-                    </Box>
-                  ) : (
-                    <Box
-                      display="flex"
-                      marginTop="1%"
-                      fontSize="1.2rem"
-                      style={{ color: "#BDBDBD" }}
-                    >
-                      ราคาที่ลง {(mostValue / lower - index)*lower} : {e.username}
-                    </Box>
-                  )}
-                </Box>
-              );
-            }):
-              <Box display="flex" width="100%" height="70px" alignItems="center" justifyContent="center" style={{color:colors.grey}}>
+          <hr color={colors.lightGrey} borderradius="4" />
+          <Box width="100%" style={{ marginLeft: "5%" }}>
+            {dataHistory.length !== 0 ? (
+              dataHistory.map((e, index) => {
+                return (
+                  <Box marginTop="5px" key={index}>
+                    {index === 0 ? (
+                      <Box
+                        display="flex"
+                        marginTop="1%"
+                        fontSize="1.2rem"
+                        style={{ color: "#549378" }}
+                      >
+                        ราคาที่ลง {(mostValue / lower - index) * lower} :{" "}
+                        {e.username}
+                      </Box>
+                    ) : informationUserReducer.userId === e.userId ? (
+                      <Box
+                        display="flex"
+                        marginTop="1%"
+                        fontSize="1.2rem"
+                        style={{ color: "#394867" }}
+                      >
+                        ราคาที่ลง {(mostValue / lower - index) * lower} :{" "}
+                        {e.username}
+                      </Box>
+                    ) : (
+                      <Box
+                        display="flex"
+                        marginTop="1%"
+                        fontSize="1.2rem"
+                        style={{ color: "#BDBDBD" }}
+                      >
+                        ราคาที่ลง {(mostValue / lower - index) * lower} :{" "}
+                        {e.username}
+                      </Box>
+                    )}
+                  </Box>
+                );
+              })
+            ) : (
+              <Box
+                display="flex"
+                width="100%"
+                height="70px"
+                alignItems="center"
+                justifyContent="center"
+                style={{ color: colors.grey }}
+              >
                 ปัจจุบันยังไม่มีการประมูลเกิดขึ้น
               </Box>
-            }
+            )}
           </Box>
         </RoundPaper>
       </Box>
