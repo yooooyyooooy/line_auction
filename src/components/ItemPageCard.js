@@ -100,7 +100,7 @@ function ItemPageCard(props) {
               const end = new Date(snapData.endAt.seconds * 1000);
               setEnd(end);
               const now = new Date();
-              setInTime(now < end);
+              setInTime(now<end)
               setTimeDiff(Math.floor((end - now) / 60000));
               if (snapData.status !== 0) {
                 if (
@@ -123,6 +123,7 @@ function ItemPageCard(props) {
   const handle = () => {
     const now = new Date();
     if (now < end) {
+
       async function send() {
         try {
           const res = await axios.put(
@@ -142,12 +143,13 @@ function ItemPageCard(props) {
           console.log(res);
         } catch (error) {
           console.log(error);
-          setErrors("error from request");
+          setErrors(true);
         }
       }
       send();
     } else {
       setErrors(true);
+
     }
   };
 
@@ -260,6 +262,7 @@ function ItemPageCard(props) {
                     icon={<NavigateNextIcon />}
                     id={props.id}
                     handle={handle}
+                    disable={errors}
                   />
                 </Box>
                 <Box
@@ -274,6 +277,9 @@ function ItemPageCard(props) {
                   </Typography>
                 </Box>
               </Box>
+              <Box width="100%" marginTop="6%">
+                    {errors ? <Alert severity="error">การประมูลจบลงแล้วจ้า</Alert> : null}
+                </Box>
             </>
           ) : (
             <Box>
@@ -282,11 +288,11 @@ function ItemPageCard(props) {
                 icon={<ArrowUpwardIcon />}
                 disable={disable}
               />
+              <Box marginTop="5%" align="center" style={{color:colors.red}}>
+                คุณไม่ใช่ผู้ชนะการประมูล
+              </Box>
             </Box>
           )}
-        </Box>
-        <Box width="100%">
-          {errors ? <Alert severity="error">การประมูลจบลงแล้วจ้า</Alert> : null}
         </Box>
       </RoundPaper>
 
