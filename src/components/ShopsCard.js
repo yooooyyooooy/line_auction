@@ -1,24 +1,88 @@
-import React from "react"
+import React, { useState, useEffect } from "react";
 
 //Components
-import {Box, List,Typography} from "@material-ui/core" 
-import RoundPaper from "./RoundPaper"
-import GreenButton from "./GreenButton"
+import { Box, List, Typography } from "@material-ui/core";
+import RoundPaper from "./RoundPaper";
+import NavButton from "./NavButton";
+import ShopTwoIcon from "@material-ui/icons/ShopTwo";
+import NavigateNextIcon from "@material-ui/icons/NavigateNext";
+import ShopsComponentCard from "./ShopsComponentCard";
 
-function ShopsCard(){
+import { makeStyles } from "@material-ui/core/styles";
+import colors from "../styles/colors";
+import { firestore } from "../utils/setFirebase";
+
+const useStyles = makeStyles((theme) => ({
+  headers: {
+    color: colors.blue,
+    display: "flex",
+    justifyContent: "flex-end",
+  },
+}));
+
+function ShopsCard({ data }) {
+  const classes = useStyles();
+  const [shops, setShops] = useState([]);
+  useEffect(() => {
+    let unmounted = false;
+    setShops([]);
+    if (data && data !== "") {
+      let v = [];
+      firestore
+        .collection("stores")
+        .get()
+        .then(function (snapshot) {
+          snapshot.forEach(function (doc) {
+            if (!unmounted) {
+              if (data.includes(doc.id)) {
+                let x = doc.data();
+                x.ID = doc.id;
+                v.push(x);
+              }
+            }
+          });
+          if (!unmounted) {
+            setShops(v);
+          }
+        });
+    }
+    return () => {
+      unmounted = true;
+    };
+  }, [data]);
   return (
-    <Box>
-      <RoundPaper style={{width:"80%",marginTop:"5%",margin:"auto"}}>
-        <Typography>
-          SHOPS
-        </Typography>
+    <Box marginTop="5%">
+      <RoundPaper style={{ width: "80%", margin: "auto" }}>
+        <Box className={classes.headers}>
+          <Box marginRight="1rem">
+            <ShopTwoIcon fontSize="small" />
+          </Box>
+          <Box>
+            <Typography style={{ fontWeight: "bold" }}>SHOPS</Typography>
+          </Box>
+        </Box>
         <List>
-           
-        </List> 
-        <GreenButton text="SHOW ALL SHOPS"/>
+          {shops &&
+            shops.map((e, index) => {
+              return (
+                <ShopsComponentCard
+                  key={index}
+                  shoptitle={e.title}
+                  details={e.category}
+                  id={e.ID}
+                  time="เหลือเวลาอีก 20 นาที"
+                />
+              );
+            })}
+        </List>
+        <NavButton
+          text="SHOW ALL SHOPS"
+          dest="/shops"
+          icon={<NavigateNextIcon />}
+        />
       </RoundPaper>
     </Box>
-  ) 
+  );
 }
 
-export default ShopsCard
+export default ShopsCard;

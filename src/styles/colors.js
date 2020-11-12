@@ -12,11 +12,15 @@ const colors = {
   darkBlue : "#14274E" ,
   blue : "#394867" ,
   darkPink: "#D46C86",
+  lightGray: "E4E4E4",
   grey: "#C4C4C4",
+  darkGrey : "#808080",
   white : "#F2F2F2" ,
   green : "#5DB075" ,
   black: "#1e1e1e",
-  yellow : "#FFF3D2"
+  yellow : "#FFF3D2",
+  red : "#E71919",
+  gold : "#FFD439"
 }
 
 export default colors
