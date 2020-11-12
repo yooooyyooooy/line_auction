@@ -41,8 +41,9 @@ function HistoryCard({ data }) {
               }
             }
           });
-          console.log(v);
-          setDataHistory(v);
+          if (!unmounted) {
+            setDataHistory(v);
+          }
         });
     }
     return () => {

@@ -47,12 +47,13 @@ export default function Home() {
   const [allShop, setAllShop] = useState([]);
   const [allOnbidding, setAllOnbidding] = useState([]);
   const [allHistory, setAllHistory] = useState([]);
-//   const [allFav, setAllFav] = useState([]);
+  //   const [allFav, setAllFav] = useState([]);
   const informationUserReducer = useSelector(
     ({ informationReducer }) => informationReducer
   );
   useEffect(() => {
     let unmounted = false;
+    console.log("dp");
     if (informationUserReducer.userId) {
       firestore
         .collection("users")
@@ -60,10 +61,16 @@ export default function Home() {
         .onSnapshot(function (doc) {
           if (!unmounted) {
             if (doc.data()) {
-              setAllShop(doc.data().favoriteStore);
-            //   setAllFav(doc.data().favoriteItem);
-              setAllOnbidding(doc.data().onBidding);
-              setAllHistory(doc.data().history);
+              console.log("do");
+              if (doc.data().favoriteStore.length !== allShop.length) {
+                setAllShop(doc.data().favoriteStore);
+              }
+              if (doc.data().onBidding.length !== allOnbidding.length) {
+                setAllOnbidding(doc.data().onBidding);
+              }
+              if (doc.data().history.length !== allHistory.length) {
+                setAllHistory(doc.data().history);
+              }
               store.dispatch(
                 informationUserAction.setCredit({
                   credit: doc.data().credits,
@@ -76,7 +83,12 @@ export default function Home() {
     return () => {
       unmounted = true;
     };
-  }, [informationUserReducer.userId]);
+  }, [
+    informationUserReducer.userId,
+    allOnbidding.length,
+    allShop.length,
+    allHistory.length,
+  ]);
 
   const shift = isTablet ? "-20vh" : "-80px";
 
@@ -125,5 +137,4 @@ export default function Home() {
       </>
     );
   }
-  
 }

@@ -16,7 +16,7 @@ function getParameterByName(name, url = window.location.href) {
 
 async function FetchLiff() {
   let unmounted = false;
-  await liff.init({ liffId: "1655206384-XQoOgdqp" });
+  await liff.init({ liffId: "1655206384-eMaQ6pn4" });
   liff.ready.then(() => {
     if (liff.isLoggedIn()) {
       liff.getProfile().then((profile) => {
