@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 //components
 import { Box, IconButton, Typography } from "@material-ui/core";
-import Alert from '@material-ui/lab/Alert';
+import Alert from "@material-ui/lab/Alert";
 import RoundPaper from "./RoundPaper";
 import StarIcon from "@material-ui/icons/Star";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
@@ -67,7 +67,7 @@ function ItemPageCard(props) {
   const handleClick = (e) => {
     clicks ? setClick(false) : setClick(true);
   };
-  const [disable, setDisable] = useState(false);
+  const [disable, setDisable] = useState(true);
   const [end, setEnd] = useState(null);
   const [status, setStatus] = useState(0);
   const [dataHistory, setDataHistory] = useState([]);
@@ -78,6 +78,7 @@ function ItemPageCard(props) {
   const [highestBidId, setHighestBidId] = useState("");
   const [lower, setLower] = useState();
   const [timeDiff, setTimeDiff] = useState(0);
+  const [paymentUrl, setPaymentUrl] = useState("");
 
   useEffect(() => {
     let unmounted = false;
@@ -89,26 +90,36 @@ function ItemPageCard(props) {
           .onSnapshot((snapshot) => {
             if (!unmounted) {
               const snapData = snapshot.data();
-              setDataHistory(snapData.history.slice(-3).reverse());
-              setMostValue(snapData.mostValue.value);
-              setDescription(snapData.description);
-              setHighestBidName(snapData.mostValue.username);
-              setHighestBidId(snapData.mostValue.userId);
-              setTitle(snapData.title);
-              setLower(snapData.lower);
-              setStatus(snapData.status);
-              const end = new Date(snapData.endAt.seconds * 1000);
-              setEnd(end);
-              const now = new Date();
-              setInTime(now<end)
-              setTimeDiff(Math.floor((end - now) / 60000));
-              if (snapData.status !== 0) {
-                if (
-                  informationUserReducer.userId === snapData.mostValue.userId
-                ) {
+              if (snapData) {
+                setDataHistory(snapData.history.slice(-3).reverse());
+                setMostValue(snapData.mostValue.value);
+                setDescription(snapData.description);
+                setHighestBidName(snapData.mostValue.username);
+                setHighestBidId(snapData.mostValue.userId);
+                setTitle(snapData.title);
+                setLower(snapData.lower);
+                setStatus(snapData.status);
+                if (snapData.linepay !== null) {
+                  setPaymentUrl(snapData.linepay);
                   setDisable(false);
+                }
+                const end = new Date(snapData.endAt.seconds * 1000);
+                setEnd(end);
+                const now = new Date();
+                setInTime(now < end);
+                setTimeDiff(Math.floor((end - now) / 60000));
+                if (snapData.status !== 0) {
+                  if (
+                    informationUserReducer.userId === snapData.mostValue.userId
+                  ) {
+                    setDisable(false);
+                  } else {
+                    setDisable(true);
+                  }
                 } else {
-                  setDisable(true);
+                  if (!(now < end)) {
+                    setDisable(true);
+                  }
                 }
               }
             }
@@ -123,16 +134,13 @@ function ItemPageCard(props) {
   const handle = () => {
     const now = new Date();
     if (now < end) {
-
       async function send() {
         try {
-          const res = await axios.put(
+          await axios.put(
             `https://asia-east2-line-auction-backend.cloudfunctions.net/item/${props.id}`,
             {
               userId: informationUserReducer.userId,
               username: informationUserReducer.userName,
-              // userId:"U4926644b51833230d9fe6299bb8ede28",
-              // username:"PLEUM"
             },
             {
               headers: {
@@ -140,16 +148,13 @@ function ItemPageCard(props) {
               },
             }
           );
-          console.log(res);
         } catch (error) {
-          console.log(error);
           setErrors(true);
         }
       }
       send();
     } else {
       setErrors(true);
-
     }
   };
 
@@ -160,7 +165,7 @@ function ItemPageCard(props) {
           <Box>
             <span
               onClick={(e) => {
-                history.goBack();
+                history.push("/Home");
               }}
             >
               <BackButton />
@@ -278,8 +283,10 @@ function ItemPageCard(props) {
                 </Box>
               </Box>
               <Box width="100%" marginTop="6%">
-                    {errors ? <Alert severity="error">การประมูลจบลงแล้วจ้า</Alert> : null}
-                </Box>
+                {errors ? (
+                  <Alert severity="error">การประมูลจบลงแล้วจ้า</Alert>
+                ) : null}
+              </Box>
             </>
           ) : (
             <Box>
@@ -287,8 +294,9 @@ function ItemPageCard(props) {
                 text="โอนเงินผ่าน LINE PAY"
                 icon={<ArrowUpwardIcon />}
                 disable={disable}
+                paymentUrl={paymentUrl}
               />
-              <Box marginTop="5%" align="center" style={{color:colors.red}}>
+              <Box marginTop="5%" align="center" style={{ color: colors.red }}>
                 คุณไม่ใช่ผู้ชนะการประมูล
               </Box>
             </Box>

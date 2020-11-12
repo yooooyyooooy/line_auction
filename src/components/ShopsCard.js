@@ -41,7 +41,9 @@ function ShopsCard({ data }) {
               }
             }
           });
-          setShops(v);
+          if (!unmounted) {
+            setShops(v);
+          }
         });
     }
     return () => {

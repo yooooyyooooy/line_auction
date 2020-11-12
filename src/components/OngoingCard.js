@@ -41,7 +41,9 @@ function OngoingCard({ data }) {
               }
             }
           });
-          setAllOnbidding(v);
+          if (!unmounted) {
+            setAllOnbidding(v);
+          }
         });
     }
     return () => {
