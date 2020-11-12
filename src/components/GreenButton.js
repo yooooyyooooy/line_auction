@@ -17,12 +17,14 @@ export default function GreenButton(props) {
     <Button
       onClick={props.handle}
       style={{
-        backgroundColor: colors.green,
+        backgroundColor: !props.disable  ? colors.green : colors.grey,
         width: "100%",
         color: "white",
         height: "200%",
         fontWeight: "bold",
-      }}
+      }
+      }
+      disabled={props.disable ? props.disable : false}
       endIcon={props.icon}
     >
       <Box fontSize={myFont}>{props.text}</Box>
